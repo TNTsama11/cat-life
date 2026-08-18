@@ -56,6 +56,41 @@ const MATCHMAKING_EVENT = 2138
 /** 普通事件基础权重 */
 const MORTAL_BASE_WEIGHT = 10
 
+/** 只有家养猫才会遇到的事件特征词（野猫会过滤掉这些事件） */
+const HOME_ONLY_PATTERNS = [
+    '主人',
+    '家里',
+    '猫砂盆',
+    '猫窝',
+    '沙发',
+    '被窝',
+    '阳台',
+    '猫爬架',
+    '猫粮柜',
+    '零食柜',
+    '宠物医院',
+    '宠物公园',
+    '全家福',
+    '疗养院',
+    '铲屎',
+] as const
+
+function isHomeOnlyEvent(text: string): boolean {
+    return HOME_ONLY_PATTERNS.some(pattern => text.includes(pattern))
+}
+
+/** 凡猫事件是否对当前猫可用（野猫会过滤掉“主人/家里”类事件） */
+function mortalEventAvailable(
+    eventId: Event['id'],
+    state: GameState,
+    profile: ProfileState,
+): boolean {
+    if (!ec(eventId, state, profile)) return false
+    if (state.adopted) return true
+    const text = events.get(eventId)?.event ?? ''
+    return !isHomeOnlyEvent(text)
+}
+
 /**
  * 情感/生育事件权重：
  * - 整体比普通事件低
@@ -194,7 +229,7 @@ export function next(
                     ev = hints[random(hints.length - 1, 0, rng)] ?? null
                 } else {
                     const pool = ages.get(age)?.event ?? []
-                    const filtered = pool.filter(([e]) => ec(e, s, profile))
+                    const filtered = pool.filter(([e]) => mortalEventAvailable(e, s, profile))
                     const weighted = filtered.map(([e, w]) => [
                         e,
                         w * mortalEventWeight(e, s),
@@ -204,7 +239,7 @@ export function next(
             }
         } else {
             const pool = ages.get(age)?.event ?? []
-            const filtered = pool.filter(([e]) => ec(e, s, profile))
+            const filtered = pool.filter(([e]) => mortalEventAvailable(e, s, profile))
             const weighted = filtered.map(([e, w]) => [
                 e,
                 w * mortalEventWeight(e, s),
