@@ -313,8 +313,43 @@ function ImmortalHUD() {
                     {state.stance === 'hide' ? '藏拙' : '扬名'}
                 </button>
             </div>
+            {state.bottleneck && (
+                <div className="bottleneck">
+                    <span>瓶颈期：选择后点击下一年</span>
+                    <button
+                        className={state.breakthroughAction === 'breakthrough' ? 'active' : ''}
+                        onClick={() =>
+                            setState(prev =>
+                                prev ? { ...prev, breakthroughAction: 'breakthrough' } : prev,
+                            )
+                        }
+                    >
+                        尝试突破
+                    </button>
+                    <button
+                        className={state.breakthroughAction === 'cultivate' ? 'active' : ''}
+                        onClick={() =>
+                            setState(prev =>
+                                prev ? { ...prev, breakthroughAction: 'cultivate' } : prev,
+                            )
+                        }
+                    >
+                        打磨一年
+                    </button>
+                    <button
+                        className={state.breakthroughAction === 'seek' ? 'active' : ''}
+                        onClick={() =>
+                            setState(prev =>
+                                prev ? { ...prev, breakthroughAction: 'seek' } : prev,
+                            )
+                        }
+                    >
+                        寻找机缘
+                    </button>
+                </div>
+            )}
             <div className="meta">
-                寿元 {state.lifespan} · 猫龄 {state.props.current.age} · 道韵 {state.daoInsight} · 心魔 {state.demonHeart}
+                寿元 {state.lifespan} · 猫龄 {state.props.current.age} · 道韵 {state.daoInsight} · 心魔 {state.demonHeart} · 准备 {state.tribulationPrep} · 业力 {state.karma}
             </div>
         </div>
     )

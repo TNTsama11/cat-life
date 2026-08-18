@@ -14,6 +14,26 @@ export const tribulationSuccessEvent = (realm: RealmType) => 9300 + realm
 export const tribulationInjureEvent = (realm: RealmType) => 9400 + realm
 export const tribulationDeathEvent = (realm: RealmType) => 9500 + realm
 
+/** 渡劫过程事件 */
+export const TRI_STAGE_EVENTS = {
+    thunderPass: 9711,
+    thunderFail: 9712,
+    mindPass: 9713,
+    mindFail: 9714,
+    windPass: 9715,
+    windFail: 9716,
+    karmaPass: 9717,
+    karmaFail: 9718,
+} as const
+
+function clampChance(chance: number): number {
+    return Math.min(0.95, Math.max(0.05, chance))
+}
+
+function rollChance(chance: number, rng?: RNG): boolean {
+    return random(100, 1, rng) <= Math.round(chance * 100)
+}
+
 /** 每回合修炼所得修为（修为越高，修炼越快） */
 export function cultivationGain(state: GameState): number {
     if (state.phase !== 'immortal' || !state.immortal) return 0
@@ -27,7 +47,7 @@ export function cultivationGain(state: GameState): number {
     return Math.max(1, Math.floor(base * realmFactor * se))
 }
 
-/** 是否应突破 */
+/** 是否应进入瓶颈期 */
 export function shouldBreakthrough(state: GameState): boolean {
     if (state.phase !== 'immortal') return false
     if (state.realm >= Realm.Ascension) return false
@@ -37,10 +57,17 @@ export function shouldBreakthrough(state: GameState): boolean {
 
 export interface BreakthroughResult {
     state: GameState
+    /** 最终结果事件（兼容旧逻辑） */
     eventId: number
+    /** 渡劫/突破过程中依次触发的事件链 */
+    eventIds: number[]
 }
 
-/** 突破/渡劫 */
+/**
+ * 突破/渡劫。
+ * 普通突破单次判定；渡劫为多阶段判定：
+ * 雷劫 → 心魔劫 →（通神起）风火劫 →（飞升）因果劫。
+ */
 export function doBreakthrough(
     state: GameState,
     rng?: RNG,
@@ -49,60 +76,120 @@ export function doBreakthrough(
     const info = REALMS[target]!
     const im = state.immortal!.current
     const { aptitude, comprehension, physique, fortune } = im
+    const dao = state.daoInsight ?? 0
+    const demon = state.demonHeart ?? 0
+    const prep = state.tribulationPrep ?? 0
+    const karma = state.karma ?? 0
+    const prevCultivation = state.cultivation
 
-    // 成功率：普通突破看 根骨+悟性；渡劫看 体魄+机缘+根骨悟性；道韵增益、心魔减益
-    let chance = 0.5 + (aptitude + comprehension) * 0.03
-    if (info.tribulation) {
-        chance =
-            0.4 +
-            physique * 0.02 +
-            fortune * 0.02 +
-            (aptitude + comprehension) * 0.015
+    const base = produce(state, draft => {
+        draft.bottleneck = false
+        draft.breakthroughAction = 'none'
+    })
+
+    // ============ 普通突破（凝脉；飞升虽标记为非渡劫，但按渡劫处理） ============
+    if (!info.tribulation && target !== Realm.Ascension) {
+        let chance =
+            0.25 +
+            aptitude * 0.03 +
+            comprehension * 0.025 +
+            physique * 0.01 +
+            dao * 0.005 -
+            demon * 0.02 +
+            prep * 0.003
+        chance = clampChance(chance)
+        if (rollChance(chance, rng)) {
+            const s = produce(base, draft => {
+                draft.realm = target
+                draft.cultivation = 0
+                draft.spiritEnergy = 0
+                draft.lifespan = info.lifespan
+                draft.tribulationPrep = 0
+            })
+            const id = breakthroughSuccessEvent(target)
+            return { state: s, eventId: id, eventIds: [id] }
+        }
+        const s = produce(base, draft => {
+            draft.cultivation = Math.floor(prevCultivation * 0.5)
+            draft.tribulationPrep = Math.min(100, Math.floor(prep * 0.3))
+        })
+        const id = breakthroughFailEvent(target)
+        return { state: s, eventId: id, eventIds: [id] }
     }
-    chance += (state.daoInsight ?? 0) * 0.01 - (state.demonHeart ?? 0) * 0.02
-    chance = Math.min(0.95, Math.max(0.05, chance))
-    const success = random(100, 1, rng) <= Math.round(chance * 100)
 
-    if (success) {
-        const s = produce(state, draft => {
+    // ============ 渡劫（多阶段） ============
+    const stages: { pass: boolean; passEvent: number; failEvent: number }[] = []
+
+    // 雷劫：看体魄 + 准备度
+    stages.push({
+        pass: rollChance(clampChance(0.35 + physique * 0.03 + prep * 0.004), rng),
+        passEvent: TRI_STAGE_EVENTS.thunderPass,
+        failEvent: TRI_STAGE_EVENTS.thunderFail,
+    })
+
+    // 心魔劫：看道韵 - 心魔，善缘有助
+    stages.push({
+        pass: rollChance(clampChance(0.35 + dao * 0.012 - demon * 0.02 + karma * 0.001), rng),
+        passEvent: TRI_STAGE_EVENTS.mindPass,
+        failEvent: TRI_STAGE_EVENTS.mindFail,
+    })
+
+    // 风火劫：通神及以上才有
+    if (target >= Realm.SpiritSevering) {
+        stages.push({
+            pass: rollChance(clampChance(0.4 + physique * 0.025 + fortune * 0.015 + prep * 0.003), rng),
+            passEvent: TRI_STAGE_EVENTS.windPass,
+            failEvent: TRI_STAGE_EVENTS.windFail,
+        })
+    }
+
+    // 因果劫：飞升才有
+    if (target === Realm.Ascension) {
+        stages.push({
+            pass: rollChance(clampChance(0.5 + karma * 0.004 + dao * 0.005), rng),
+            passEvent: TRI_STAGE_EVENTS.karmaPass,
+            failEvent: TRI_STAGE_EVENTS.karmaFail,
+        })
+    }
+
+    const failCount = stages.filter(stage => !stage.pass).length
+    const processEvents = stages.map(stage =>
+        stage.pass ? stage.passEvent : stage.failEvent,
+    )
+
+    // 全部通过：突破成功
+    if (failCount === 0) {
+        const s = produce(base, draft => {
             draft.realm = target
             draft.cultivation = 0
             draft.spiritEnergy = 0
             draft.lifespan = info.lifespan
-            if (info.tribulation) draft.tribulation += 1
+            draft.tribulation += 1
+            draft.tribulationPrep = 0
         })
-        if (target === Realm.Ascension)
-            return { state: s, eventId: ASCENSION_EVENT }
-        return {
-            state: s,
-            eventId: info.tribulation
-                ? tribulationSuccessEvent(target)
-                : breakthroughSuccessEvent(target),
-        }
+        const final = target === Realm.Ascension ? ASCENSION_EVENT : tribulationSuccessEvent(target)
+        return { state: s, eventId: final, eventIds: [...processEvents, final] }
     }
 
-    // 突破失败
-    if (info.tribulation) {
-        // 渡劫失败：可能陨落，可能重伤折寿
-        const die = random(100, 1, rng) <= 30
-        const s = produce(state, draft => {
-            draft.cultivation = Math.floor(draft.cultivation * 0.4)
+    // 只失败一劫：重伤折寿
+    if (failCount === 1) {
+        const s = produce(base, draft => {
+            draft.cultivation = Math.floor(prevCultivation * 0.4)
             draft.spiritEnergy = 0
-            if (die) draft.life = 0
-            else draft.lifespan = Math.max(1, draft.lifespan - 50)
+            draft.lifespan = Math.max(1, draft.lifespan - 40)
+            draft.tribulationPrep = Math.min(100, Math.floor(prep * 0.4))
         })
-        return {
-            state: s,
-            eventId: die
-                ? tribulationDeathEvent(target)
-                : tribulationInjureEvent(target),
-        }
+        const final = target === Realm.Ascension ? 9407 : tribulationInjureEvent(target)
+        return { state: s, eventId: final, eventIds: [...processEvents, final] }
     }
 
-    const s = produce(state, draft => {
-        draft.cultivation = Math.floor(draft.cultivation * 0.5)
+    // 失败两劫以上：陨落
+    const s = produce(base, draft => {
+        draft.life = 0
+        draft.tribulationPrep = 0
     })
-    return { state: s, eventId: breakthroughFailEvent(target) }
+    const final = target === Realm.Ascension ? 9507 : tribulationDeathEvent(target)
+    return { state: s, eventId: final, eventIds: [...processEvents, final] }
 }
 
 /** 是否拥有灵根类天赋 */

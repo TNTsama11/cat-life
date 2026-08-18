@@ -77,6 +77,11 @@ export interface GameState {
     demonHeart: number // 心魔（修仙负面积累）
     exposure: number // 妖踪暴露度（0 藏得好 ~ 100 人尽皆知）
     stance: 'hide' | 'fame' // 藏拙 / 扬名
+    // —— 瓶颈与渡劫准备 ——
+    bottleneck: boolean // 修为已满，等待突破
+    breakthroughAction: 'none' | 'breakthrough' | 'cultivate' | 'seek' // 瓶颈期选择
+    tribulationPrep: number // 渡劫准备度（0~100）
+    karma: number // 业力/善缘（-100 恶 ~ +100 善）
 }
 
 /** 持久化存储的数据 */
@@ -120,6 +125,10 @@ export function createState(
         demonHeart: 0,
         exposure: 0,
         stance: 'hide',
+        bottleneck: false,
+        breakthroughAction: 'none',
+        tribulationPrep: 0,
+        karma: 0,
     }
 }
 
@@ -187,6 +196,8 @@ export interface FlatState {
     ROM: number // 1 开启情感/生育事件
     STER: number // 1 已绝育
     HAB: number // 0 流浪 1 农村家猫 2 城市家猫
+    PREP: number // 渡劫准备度
+    KARMA: number // 业力/善缘
 }
 
 type FlatStateKey = keyof FlatState
@@ -253,6 +264,8 @@ const FlatMappers: { [Key in FlatStateKey]: FlatMapper<Key> } = {
     STER: state => (state.game.sterilized ? 1 : 0),
     HAB: state =>
         state.game.habitat === 'urban' ? 2 : state.game.habitat === 'rural' ? 1 : 0,
+    PREP: state => state.game.tribulationPrep ?? 0,
+    KARMA: state => state.game.karma ?? 0,
 }
 
 export const SupportedFlatStateKeys = new Set(keys(FlatMappers))

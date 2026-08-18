@@ -228,6 +228,34 @@ export interface NextResult {
     washMarrow: boolean
 }
 
+/** 依次触发多个事件（渡劫/突破过程），返回合并后的状态与触发列表 */
+function triggerEvents(
+    eventIds: Iterable<Event['id']>,
+    state: GameState,
+    profile: ProfileState,
+): TriggerResult<Event['id']> {
+    let s = state
+    const triggers: Event['id'][] = []
+    for (const id of eventIds) {
+        const result = etr(id, s, profile)
+        s = result.state
+        triggers.push(...result.triggers)
+    }
+    return { state: s, triggers }
+}
+
+/** 普通修炼事件（70% 年份走这里） */
+function rollCultivationEvent(rng?: RNG): number {
+    const roll = random(99, 0, rng)
+    if (roll < 60) return 9721 // 修炼顺利
+    if (roll < 80) {
+        const insights = [9722, 9723, 9724, 9725, 9726]
+        return insights[random(insights.length - 1, 0, rng)] ?? 9722
+    }
+    if (roll < 95) return 9727 // 修炼受挫
+    return 9728 // 走火入魔
+}
+
 export function next(
     state: GameState,
     profile: ProfileState,
@@ -243,31 +271,69 @@ export function next(
     let er: TriggerResult<Event['id']> = { state: s, triggers: [] }
 
     if (s.phase === 'immortal') {
-        const gain = cultivationGain(s)
-        s = produce(s, draft => {
-            draft.cultivation += gain
-            draft.spiritEnergy += 1
-            // 藏拙降低暴露，扬名增加暴露（引来机缘，也引来危险）
-            const drift = draft.stance === 'fame' ? 3 : -3
-            draft.exposure = Math.min(100, Math.max(0, draft.exposure + drift))
-        })
-        if (shouldBreakthrough(s)) {
-            const br = doBreakthrough(s, rng)
-            s = br.state
-            er = etr(br.eventId, s, profile)
+        if (s.bottleneck) {
+            // 瓶颈期：玩家在 UI 上选择突破 / 打磨 / 寻缘
+            if (s.breakthroughAction === 'breakthrough') {
+                const br = doBreakthrough(s, rng)
+                s = br.state
+                er = triggerEvents(br.eventIds, s, profile)
+            } else if (s.breakthroughAction === 'cultivate') {
+                s = produce(s, draft => {
+                    draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 8)
+                    draft.breakthroughAction = 'none'
+                })
+                er = etr(9702, s, profile)
+            } else if (s.breakthroughAction === 'seek') {
+                const found = random(99, 0, rng) < 70
+                s = produce(s, draft => {
+                    if (found) {
+                        draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 15)
+                    } else {
+                        draft.tribulationPrep = Math.max(0, draft.tribulationPrep - 5)
+                        draft.demonHeart += 1
+                    }
+                    draft.breakthroughAction = 'none'
+                })
+                er = etr(found ? 9703 : 9704, s, profile)
+            } else {
+                // 没有选择：瓶颈提示，并缓慢增加一点准备度
+                s = produce(s, draft => {
+                    draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 1)
+                })
+                er = etr(9701, s, profile)
+            }
         } else {
-            const pool = realmEvents.get(s.realm) ?? []
-            const filtered = pool.filter(([e]) => ec(e, s, profile))
-            // 机缘越高，越容易遇到高稀有度事件；扬名会额外吸引机缘与风险
-            const stanceBonus = s.stance === 'fame' ? 5 : 0
-            const fortune = (s.immortal?.current.fortune ?? 0) + stanceBonus
-            const weighted = filtered.map(([e]) => {
-                const grade = events.get(e)?.grade ?? 0
-                const w = 1 + Math.max(0, fortune) * grade * 0.08
-                return [e, w] as [Event['id'], number]
+            const gain = cultivationGain(s)
+            s = produce(s, draft => {
+                draft.cultivation += gain
+                draft.spiritEnergy += 1
+                // 藏拙降低暴露，扬名增加暴露（引来机缘，也引来危险）
+                const drift = draft.stance === 'fame' ? 3 : -3
+                draft.exposure = Math.min(100, Math.max(0, draft.exposure + drift))
             })
-            const ev = pickWeight(weighted, rng)
-            if (ev != null) er = etr(ev, s, profile)
+            if (shouldBreakthrough(s)) {
+                s = produce(s, draft => {
+                    draft.bottleneck = true
+                })
+                er = etr(9701, s, profile)
+            } else if (random(99, 0, rng) < 70) {
+                // 70% 年份是普通修炼；修炼事件小概率失败或小悟
+                const ev = rollCultivationEvent(rng)
+                er = etr(ev, s, profile)
+            } else {
+                const pool = realmEvents.get(s.realm) ?? []
+                const filtered = pool.filter(([e]) => ec(e, s, profile))
+                // 机缘越高，越容易遇到高稀有度事件；扬名会额外吸引机缘与风险
+                const stanceBonus = s.stance === 'fame' ? 5 : 0
+                const fortune = (s.immortal?.current.fortune ?? 0) + stanceBonus
+                const weighted = filtered.map(([e]) => {
+                    const grade = events.get(e)?.grade ?? 0
+                    const w = 1 + Math.max(0, fortune) * grade * 0.08
+                    return [e, w] as [Event['id'], number]
+                })
+                const ev = pickWeight(weighted, rng)
+                if (ev != null) er = etr(ev, s, profile)
+            }
         }
         if (s.props.current.age >= s.lifespan) {
             s = produce(s, draft => {
@@ -353,6 +419,10 @@ export function applyImmortal(
         draft.stance = 'hide'
         // 伐骨洗髓再造肉体：凡猫时期的绝育不再作数
         draft.sterilized = false
+        draft.bottleneck = false
+        draft.breakthroughAction = 'none'
+        draft.tribulationPrep = 0
+        draft.karma = 0
     })
 }
 

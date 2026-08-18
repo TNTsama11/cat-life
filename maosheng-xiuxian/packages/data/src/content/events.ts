@@ -142,4 +142,32 @@ export const eventList: Event[] = [
     { id: 9406, event: '渡劫境的最后一关，你没能跨过去，重伤垂死，寿元将尽。', grade: 1, tribulation: true },
     { id: 9506, event: '你在渡劫中陨落，九重天雷过后，世上再无你的身影。', grade: 2, tribulation: true },
     { id: 9600, event: '你渡尽劫波，飞升成仙！从此，你是九天之上的一只猫仙，俯视着三界众生。', grade: 3, ascension: true },
+
+    // ============ 瓶颈与修炼/渡劫过程事件（NoRandom，由引擎直接触发） ============
+    { id: 9701, event: '你修为已至瓶颈，丹田鼓胀，却迟迟摸不到下一层的门槛。', grade: 1, NoRandom: true },
+    { id: 9702, event: '你又打磨了一年，修为愈发圆润，渡劫的把握多了一分。', grade: 0, NoRandom: true },
+    { id: 9703, event: '你外出寻缘，竟在一处废弃洞府里找到半卷前人渡劫心得。', grade: 1, NoRandom: true },
+    { id: 9704, event: '你外出寻缘，误入一片迷雾，被罡风所伤，准备全被打乱。', grade: 1, NoRandom: true },
+
+    { id: 9711, event: '第一重天雷落下，你弓起背，硬生生扛了过去。', grade: 1, NoRandom: true, tribulation: true },
+    { id: 9712, event: '第一重天雷落下，你被劈得皮开肉绽。', grade: 1, NoRandom: true, tribulation: true },
+    { id: 9713, event: '心魔来袭，你看见了猫条、纸箱和人类的怀抱，你舔了舔爪，没有沉进去。', grade: 1, NoRandom: true, tribulation: true },
+    { id: 9714, event: '心魔来袭，你看见自己被赶出家门的那个冬天，爪下一滑，险些失守。', grade: 1, NoRandom: true, tribulation: true },
+    { id: 9715, event: '风火劫至，你在烈焰与罡风中稳住了身形。', grade: 2, NoRandom: true, tribulation: true },
+    { id: 9716, event: '风火劫至，你被吹得睁不开眼，毛都焦了。', grade: 2, NoRandom: true, tribulation: true },
+    { id: 9717, event: '因果劫中，你看见那些被你帮过的生灵，它们替你挡了一记天罚。', grade: 2, NoRandom: true, tribulation: true },
+    { id: 9718, event: '因果劫中，你看见那些被你欺负过的生灵，它们一起向你扑来。', grade: 2, NoRandom: true, tribulation: true },
+
+    { id: 9407, event: '飞升劫九死一生，你虽保住性命，却从云头跌落，寿元大损。', grade: 2, NoRandom: true, tribulation: true },
+    { id: 9507, event: '飞升劫下，你没能跨过最后一道天门，化作一只坠落的猫。', grade: 2, NoRandom: true, tribulation: true },
+
+    // ============ 普通修炼事件（NoRandom，由引擎按境界/概率直接触发） ============
+    { id: 9721, event: '你盘坐吐纳，灵气如溪流般汇入体内，修炼顺利。', grade: 0, NoRandom: true, immortalEffect: { CULT: 10, SE: 2 } },
+    { id: 9722, event: '你修炼中忽有所悟，根骨似乎更契合天地灵气了。', grade: 1, NoRandom: true, immortalEffect: { CULT: 8, APT: 1 } },
+    { id: 9723, event: '你修炼中灵光一闪，对功法的领悟更深了一层。', grade: 1, NoRandom: true, immortalEffect: { CULT: 8, COMP: 1 } },
+    { id: 9724, event: '你引灵气淬炼肉身，体魄结实了不少。', grade: 1, NoRandom: true, immortalEffect: { CULT: 8, PHY: 1 } },
+    { id: 9725, event: '你在修炼中捕捉到一丝天机，机缘悄然增长。', grade: 1, NoRandom: true, immortalEffect: { CULT: 8, FOR: 1 } },
+    { id: 9726, event: '你与天地灵气愈发亲近，灵韵又添一分。', grade: 1, NoRandom: true, immortalEffect: { CULT: 8, SPC: 1 } },
+    { id: 9727, event: '你修炼时被山风打断，这一次收获平平。', grade: 0, NoRandom: true, immortalEffect: { CULT: 4 } },
+    { id: 9728, event: '你修炼时心浮气躁，灵气逆行，心魔悄悄滋生。', grade: 1, NoRandom: true, immortalEffect: { CULT: -4, DEMON: 2 } },
 ]
