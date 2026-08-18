@@ -1,0 +1,88 @@
+import type { Event } from '../event.types'
+
+/** 追加修仙事件（第三批） */
+export const eventList: Event[] = [
+    // 炼气
+    { id: 7301, event: '你第一次感受到「气感」，像是肚子里有只小鱼在游。', grade: 0, realm: 1, immortalEffect: { CULT: 7 } },
+    { id: 7302, event: '你在古井边打坐，井里的水汽凝成一丝丝灵气钻入你的毛孔。', grade: 0, realm: 1, immortalEffect: { CULT: 8, SE: 5 } },
+    { id: 7303, event: '你偷看主人练太极，竟从中悟出了一丝拳意。', grade: 1, realm: 1, immortalEffect: { CULT: 10 } },
+    { id: 7304, event: '你在废弃的祠堂里捡到一枚黯淡的玉简，上面有炼气口诀。', grade: 1, realm: 1, immortalEffect: { CULT: 12, SE: 6 } },
+    { id: 7305, event: '你与一只成精的黄鼠狼斗法，被它放了个屁，差点晕过去。', grade: 0, realm: 1, immortalEffect: { CULT: 9 } },
+    { id: 7306, event: '你在竹林里吞吐清气，竹叶沙沙，仿佛在为你伴舞。', grade: 0, realm: 1, immortalEffect: { CULT: 8, SE: 5 } },
+    { id: 7307, event: '你学会了「猫眼观气」，能看见万物身上的灵气流转。', grade: 1, realm: 1, immortalEffect: { CULT: 11, SE: 6 } },
+    { id: 7308, event: '你在集市上捡到一枚别人丢弃的聚气符，如获至宝。', grade: 1, realm: 1, immortalEffect: { SE: 12 } },
+    { id: 7309, event: '你在夜里对着北斗七星吐纳，星光仿佛垂落你身。', grade: 1, realm: 1, immortalEffect: { CULT: 12, SE: 7 } },
+    { id: 7310, event: '你被一位散修前辈摸了摸头，他叹道：「猫有灵性，可传衣钵。」', grade: 2, realm: 1, immortalEffect: { CULT: 15, SE: 8 } },
+    { id: 7311, event: '你在河边看鱼，看了一整天，竟悟出了「观水」的炼气法门。', grade: 1, realm: 1, immortalEffect: { CULT: 13 } },
+    { id: 7312, event: '你误食了一颗朱果，浑身暖流涌动，修为精进。', grade: 2, realm: 1, immortalEffect: { CULT: 16, SE: 8 } },
+
+    // 筑基
+    { id: 7401, event: '你筑成道基后，方圆十里的灵气都向你聚拢。', grade: 1, realm: 2, immortalEffect: { CULT: 18, SE: 10 } },
+    { id: 7402, event: '你在瀑布下打坐百日，冲刷尽了体内的凡尘杂质。', grade: 1, realm: 2, effect: { STR: 1 }, immortalEffect: { CULT: 22, SE: 12 } },
+    { id: 7403, event: '你学会了御剑，虽然飞得歪歪扭扭，但总算没摔着。', grade: 1, realm: 2, immortalEffect: { CULT: 18 } },
+    { id: 7404, event: '你在古修士洞府里捡到一枚筑基丹，如虎添翼。', grade: 2, realm: 2, immortalEffect: { CULT: 26, SE: 14 } },
+    { id: 7405, event: '你与一只筑基期的狸猫精结为道友，相约同闯仙途。', grade: 1, realm: 2, immortalEffect: { CULT: 20, SE: 10 } },
+    { id: 7406, event: '你在深山里采药，误入一处灵脉，灵气浓郁得化不开。', grade: 2, realm: 2, immortalEffect: { CULT: 28, SE: 15 } },
+    { id: 7407, event: '你参悟了一门「猫影身法」，来去无踪。', grade: 1, realm: 2, immortalEffect: { CULT: 22 } },
+    { id: 7408, event: '你在夜里吸收月华，道基愈发稳固。', grade: 0, realm: 2, immortalEffect: { CULT: 18, SE: 10 } },
+    { id: 7409, event: '你救了一只被猎户追捕的灵狐，它赠你一枚妖丹。', grade: 2, realm: 2, immortalEffect: { CULT: 25, SE: 12 } },
+    { id: 7410, event: '你在筑基中期闭关，出来时已小有所成。', grade: 0, realm: 2, immortalEffect: { CULT: 20, SE: 10 } },
+    { id: 7411, event: '你与一位筑基剑修切磋，输是输了，却学到了剑意。', grade: 1, realm: 2, immortalEffect: { CULT: 24 } },
+    { id: 7412, event: '你在拍卖会上用一瓶猫薄荷，换到了一件残破的护身法宝。', grade: 2, realm: 2, immortalEffect: { CULT: 22, SE: 12 } },
+
+    // 金丹
+    { id: 7501, event: '你的金丹圆转如意，修为日益深厚。', grade: 1, realm: 3, immortalEffect: { CULT: 32, SE: 15 } },
+    { id: 7502, event: '你在丹炉前枯坐七日，炼成一炉「猫猫护心丹」。', grade: 2, realm: 3, immortalEffect: { CULT: 38, SE: 18 } },
+    { id: 7503, event: '你以金丹修为，斩了一头为祸的狼妖，威名远播。', grade: 2, realm: 3, effect: { STR: 2 }, immortalEffect: { CULT: 40 } },
+    { id: 7504, event: '你在秘境中与一位金丹女修结伴，一路互相扶持。', grade: 1, realm: 3, immortalEffect: { CULT: 34, SE: 16 } },
+    { id: 7505, event: '你炼化了一枚千年冰髓，心境愈发澄澈。', grade: 2, realm: 3, immortalEffect: { CULT: 42, SE: 20 } },
+    { id: 7506, event: '你闭关一甲子，出关时金丹已然圆满。', grade: 1, realm: 3, effect: { AGE: 60 }, immortalEffect: { CULT: 75 } },
+    { id: 7507, event: '你收了一只金丹期的鼠妖当探子，情报网遍布千里。', grade: 1, realm: 3, immortalEffect: { CULT: 35, SE: 15 } },
+    { id: 7508, event: '你在雷雨夜引天雷炼体，金丹愈发璀璨。', grade: 1, realm: 3, effect: { STR: 1 }, immortalEffect: { CULT: 38, SE: 18 } },
+    { id: 7509, event: '你与一条金丹期的蛟龙斗法，险胜半招。', grade: 2, realm: 3, effect: { STR: 2 }, immortalEffect: { CULT: 42 } },
+    { id: 7510, event: '你在万兽谷讲道，群兽朝拜，你颇有几分宗师气度。', grade: 1, realm: 3, immortalEffect: { CULT: 36, SE: 16 } },
+    { id: 7511, event: '你寻得一枚化婴契机，只等水到渠成。', grade: 2, realm: 3, immortalEffect: { CULT: 45, SE: 20 } },
+    { id: 7512, event: '你回望凡间，昔日的小镇已换了人间，你心头一颤。', grade: 1, realm: 3, immortalEffect: { CULT: 33 } },
+
+    // 元婴
+    { id: 7601, event: '你的元婴已是巴掌大的小猫，能与你心意相通。', grade: 1, realm: 4, immortalEffect: { CULT: 48, SE: 22 } },
+    { id: 7602, event: '你元婴出窍，遨游星海，见天地之浩瀚。', grade: 2, realm: 4, immortalEffect: { CULT: 55, SE: 25 } },
+    { id: 7603, event: '你在星空古路闭关三百年，一朝顿悟。', grade: 2, realm: 4, effect: { AGE: 300 }, immortalEffect: { CULT: 140 } },
+    { id: 7604, event: '你以元婴修为，镇压了一头千年蛟龙，名震一方。', grade: 3, realm: 4, effect: { STR: 2 }, immortalEffect: { CULT: 75, SE: 30 } },
+    { id: 7605, event: '你收下三百猫弟子，开宗立派，成了「猫祖」。', grade: 2, realm: 4, immortalEffect: { CULT: 55, SE: 25 } },
+    { id: 7606, event: '你在仙府遗迹中寻得一卷化神诀，如获至宝。', grade: 3, realm: 4, immortalEffect: { CULT: 80, SE: 35 } },
+    { id: 7607, event: '你与一位化神老怪论道，被骂醒，却受益终身。', grade: 2, realm: 4, immortalEffect: { CULT: 60, SE: 25 } },
+    { id: 7608, event: '你在雷池中炼婴，元婴愈发剔透，宛若琉璃。', grade: 2, realm: 4, effect: { STR: 2 }, immortalEffect: { CULT: 65, SE: 30 } },
+    { id: 7609, event: '你回望来路，那只曾与你抢猫条的猫，已在轮回中与你遥遥相望。', grade: 1, realm: 4, immortalEffect: { CULT: 50 } },
+    { id: 7610, event: '你在仙酿会上饮下一滴仙露，修为暴涨。', grade: 2, realm: 4, immortalEffect: { CULT: 70, SE: 28 } },
+    { id: 7611, event: '你寻得半部飞升诀，字字珠玑，如醍醐灌顶。', grade: 3, realm: 4, immortalEffect: { CULT: 85, SE: 35 } },
+    { id: 7612, event: '你的元婴中期已成，离化神又近了一步。', grade: 0, realm: 4, immortalEffect: { CULT: 52, SE: 22 } },
+
+    // 化神
+    { id: 7701, event: '你化神之后，一道神识便可遍观三千里山河。', grade: 2, realm: 5, immortalEffect: { CULT: 70, SE: 32 } },
+    { id: 7702, event: '你在混沌海闭关五百年，肉身神识皆臻化境。', grade: 2, realm: 5, effect: { AGE: 500 }, immortalEffect: { CULT: 180 } },
+    { id: 7703, event: '你与一位散仙对弈，从棋局中悟出了一缕大道。', grade: 3, realm: 5, immortalEffect: { CULT: 95, SE: 40 } },
+    { id: 7704, event: '你炼化了一滴混沌真水，肉身直追仙体。', grade: 3, realm: 5, effect: { STR: 3 }, immortalEffect: { CULT: 100, SE: 45 } },
+    { id: 7705, event: '你以猫身入道，引动天地异象，三界侧目。', grade: 2, realm: 5, immortalEffect: { CULT: 80, SE: 35 } },
+    { id: 7706, event: '你在九天罡风中淬炼神识，心神愈发通透。', grade: 2, realm: 5, immortalEffect: { CULT: 85, SE: 38 } },
+    { id: 7707, event: '你与一条化神期的真龙结拜，它唤你「猫兄」。', grade: 2, realm: 5, effect: { STR: 2 }, immortalEffect: { CULT: 90, SE: 40 } },
+    { id: 7708, event: '你回望凡间，那间你出生的老屋，已在岁月中化作了尘土。', grade: 1, realm: 5, immortalEffect: { CULT: 75 } },
+    { id: 7709, event: '你炼化了一枚上古妖帝的妖核，妖力大涨。', grade: 3, realm: 5, immortalEffect: { CULT: 105, SE: 45 } },
+    { id: 7710, event: '你在化神巅峰盘坐，只待那最后一劫的降临。', grade: 1, realm: 5, effect: { AGE: 100 }, immortalEffect: { CULT: 92, SE: 40 } },
+    { id: 7711, event: '你在星空尽头悟道，一颗流星坠入你心。', grade: 2, realm: 5, immortalEffect: { CULT: 98, SE: 42 } },
+    { id: 7712, event: '你把这一生的修行，都融进了一声悠长的猫叫里。', grade: 1, realm: 5, immortalEffect: { CULT: 78, SE: 35 } },
+
+    // 渡劫
+    { id: 7801, event: '你踏入渡劫境，天地仿佛都在你的呼吸间颤抖。', grade: 2, realm: 6, immortalEffect: { CULT: 95, SE: 45 } },
+    { id: 7802, event: '你在雷海中沐浴千年，肉身不坏，神识不朽。', grade: 2, realm: 6, effect: { AGE: 1000, STR: 2 }, immortalEffect: { CULT: 220, SE: 80 } },
+    { id: 7803, event: '你参悟了飞升的最后一关，只差一个契机。', grade: 3, realm: 6, immortalEffect: { CULT: 130, SE: 55 } },
+    { id: 7804, event: '你寻得一枚仙人遗蜕，从中悟出飞升之秘。', grade: 3, realm: 6, immortalEffect: { CULT: 150, SE: 65 } },
+    { id: 7805, event: '你以九命玄猫之身，硬扛九九八十一道天雷，巍然不动。', grade: 3, realm: 6, effect: { STR: 3 }, immortalEffect: { CULT: 140, SE: 60 } },
+    { id: 7806, event: '你在飞升台前，把这一生的感悟化作了一缕仙气。', grade: 2, realm: 6, immortalEffect: { CULT: 115, SE: 50 } },
+    { id: 7807, event: '你回望凡间，那些爱你的人，早已轮回，而你还在等一个飞升。', grade: 2, realm: 6, immortalEffect: { CULT: 100, SE: 45 } },
+    { id: 7808, event: '你炼化了最后一道雷劫本源，天雷再难伤你分毫。', grade: 3, realm: 6, effect: { STR: 2 }, immortalEffect: { CULT: 135, SE: 60 } },
+    { id: 7809, event: '你在星空尽头，看见了那道传说中的天门。', grade: 3, realm: 6, immortalEffect: { CULT: 145, SE: 65 } },
+    { id: 7810, event: '你只差最后一缕仙气，便可推开天门，飞升而去。', grade: 2, realm: 6, immortalEffect: { CULT: 125, SE: 55 } },
+    { id: 7811, event: '你把九条命都炼成了护身仙光，只为那最后一跃。', grade: 3, realm: 6, immortalEffect: { CULT: 120, SE: 55 } },
+    { id: 7812, event: '你在飞升前夕，回望了自己跌跌撞撞的猫生，笑了。', grade: 2, realm: 6, immortalEffect: { CULT: 110, SE: 50 } },
+]

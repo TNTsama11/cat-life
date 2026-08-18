@@ -20,9 +20,14 @@ import { eventList as eventListImmortal } from './content/events-immortal'
 import { eventList as eventListMortal } from './content/events-mortal'
 import { eventList as eventListImmortal2 } from './content/events-immortal2'
 import { eventList as eventListMortal2 } from './content/events-mortal2'
+import { eventList as eventListImmortal3 } from './content/events-immortal3'
+import { eventList as eventListMortal3 } from './content/events-mortal3'
+import { eventList as eventListImmortal4 } from './content/events-immortal4'
+import { eventList as eventListMortal4 } from './content/events-mortal4'
 import { ageList } from './content/ages'
 import { achievementList } from './content/achievements'
 import { achievementList as achievementListExtra } from './content/achievements-extra'
+import { achievementList as achievementListExtra2 } from './content/achievements-extra2'
 import { characterList } from './content/characters'
 import { specialthanksList } from './content/specialthanks'
 
@@ -32,6 +37,10 @@ const allEvents: Event[] = [
     ...eventListMortal,
     ...eventListImmortal2,
     ...eventListMortal2,
+    ...eventListImmortal3,
+    ...eventListMortal3,
+    ...eventListImmortal4,
+    ...eventListMortal4,
 ]
 
 const allTalents: Talent[] = [...talentList, ...talentListExtra]
@@ -51,6 +60,7 @@ export const age = new Map(ageList.map(a => [a.age, a])) as Map<
 const allAchievements: Achievement[] = [
     ...achievementList,
     ...achievementListExtra,
+    ...achievementListExtra2,
 ]
 
 export const achievement = new Map(
