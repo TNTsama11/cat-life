@@ -1,6 +1,6 @@
 import { toastMsg } from '@/toast'
 import './Github.css'
-const repo = 'https://github.com/VickScarlet/remake'
+const repo = 'https://github.com/TNTsama11/cat-life'
 export function Github() {
     const handleClick = () => {
         if (import.meta.env.VITE_CHANNEL === 'bili') toastMsg(repo, 'github')

@@ -1,4 +1,4 @@
-import { useRemake, useFeatures, useGoAchv, useGoThanks } from '@remake/hooks'
+import { useRemake, useGoAchv, useGoThanks } from '@remake/hooks'
 import { TextSvg } from '@/components/TextSvg'
 import { CatFace, Cloud, PawPrint, CatSilhouette, Sparkle } from '@/components/CatArt'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -7,7 +7,6 @@ import './Home.css'
 
 export default function Home() {
     const remake = useRemake()
-    const features = useFeatures()
     const goAchv = useGoAchv()
     const goThanks = useGoThanks()
     return (
@@ -43,8 +42,17 @@ export default function Home() {
                     </button>
                 </div>
             </div>
+            <div className="repo-link">
+                <a
+                    href="https://github.com/TNTsama11/cat-life"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    github.com/TNTsama11/cat-life
+                </a>
+            </div>
             <div className="actions">
-                {features && <Github />}
+                <Github />
                 <ThemeToggle />
             </div>
         </div>

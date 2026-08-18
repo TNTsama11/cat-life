@@ -36,6 +36,18 @@
         justify-content: center;
         .main { font-weight: bold; }
     }
+    > .repo-link {
+        margin-top: 0.5rem;
+        font-size: calc(0.85rem * var(--ratio-font));
+        opacity: 0.85;
+        text-align: center;
+        a {
+            color: var(--color-info);
+            text-decoration: none;
+            border-bottom: 0.0625rem dashed currentColor;
+            &:hover { opacity: 0.75; }
+        }
+    }
     > .actions {
         position: fixed;
         bottom: 1rem;
