@@ -89,3 +89,18 @@
         }
     }
 }
+
+@media (max-width: 32rem) {
+    .screen.chara .chara-details > ul.properties {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    .screen.chara .chara-details > ul.properties > li {
+        min-width: 0;
+        flex: 1 1 40%;
+    }
+    .screen.chara .chara-details > ul.properties > li span {
+        height: 1.6rem;
+        font-size: calc(0.75rem * var(--ratio-font));
+    }
+}

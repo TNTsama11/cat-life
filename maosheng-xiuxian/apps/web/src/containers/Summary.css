@@ -41,3 +41,18 @@
         width: 100%;
     }
 }
+
+@media (max-width: 32rem) {
+    .screen.summary ul.judge-list {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    .screen.summary ul.judge-list > li {
+        min-width: 0;
+        flex: 1 1 30%;
+    }
+    .screen.summary ul.judge-list > li span {
+        height: 1.6rem;
+        font-size: calc(0.8rem * var(--ratio-font));
+    }
+}
