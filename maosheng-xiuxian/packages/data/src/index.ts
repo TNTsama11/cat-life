@@ -14,9 +14,12 @@ import type { Character } from './character.types'
 import type { SpecialThanks } from './specialthanks.types'
 import { Realm } from './cultivation.types'
 import { talentList } from './content/talents'
+import { talentList as talentListExtra } from './content/talents-extra'
 import { eventList } from './content/events'
 import { eventList as eventListImmortal } from './content/events-immortal'
 import { eventList as eventListMortal } from './content/events-mortal'
+import { eventList as eventListImmortal2 } from './content/events-immortal2'
+import { eventList as eventListMortal2 } from './content/events-mortal2'
 import { ageList } from './content/ages'
 import { achievementList } from './content/achievements'
 import { achievementList as achievementListExtra } from './content/achievements-extra'
@@ -27,9 +30,13 @@ const allEvents: Event[] = [
     ...eventList,
     ...eventListImmortal,
     ...eventListMortal,
+    ...eventListImmortal2,
+    ...eventListMortal2,
 ]
 
-export const talent = new Map(talentList.map(t => [t.id, t])) as Map<
+const allTalents: Talent[] = [...talentList, ...talentListExtra]
+
+export const talent = new Map(allTalents.map(t => [t.id, t])) as Map<
     Talent['id'],
     Talent
 >
