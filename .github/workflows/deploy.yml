@@ -1,0 +1,40 @@
+name: Build and Deploy Maosheng-Xiuxian
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 🛠️ Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: 📦 Install Dependencies
+        run: pnpm install
+        working-directory: maosheng-xiuxian
+
+      - name: 🏗️ Build data
+        run: pnpm build:data
+        working-directory: maosheng-xiuxian
+
+      - name: 🏗️ Build web
+        run: pnpm build:web
+        working-directory: maosheng-xiuxian
+
+      - name: 🚀 Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: maosheng-xiuxian/apps/web/dist # The folder the action should deploy.
