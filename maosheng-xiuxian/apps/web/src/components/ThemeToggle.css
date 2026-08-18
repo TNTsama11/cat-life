@@ -1,0 +1,37 @@
+.theme-svg {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    .sun-center, .sun-beams, .mask-cutter-group {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+    }
+    .mask-cutter-group { transform: translate(0.75rem, -0.75rem); }
+    .sun-center {
+        transition: fill 0.2s ease-in-out;
+        fill: var(--style-color);
+    }
+    .sun-beams {
+        transition: stroke 0.2s ease-in-out;
+        stroke: var(--style-color);
+    }
+}
+button.theme-toggle-btn {
+    @media (hover: hover) {
+        &:hover .theme-svg{
+            .sun-center { fill: var(--style-background); }
+            .sun-beams { stroke: var(--style-background); }
+        }
+    }
+
+    &:active .theme-svg{
+        .sun-center { fill: var(--style-background); }
+        .sun-beams { stroke: var(--style-background); }
+    }
+}
+
+html[data-theme='dark'] {
+    .mask-cutter-group { transform: translate(0, 0); }
+    .theme-svg { transform: rotate(375deg); }
+    .sun-center { transform: scale(1.5); }
+    .sun-beams { opacity: 0; transform: scale(0.6); }
+}

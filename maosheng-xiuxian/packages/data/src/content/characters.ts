@@ -1,0 +1,13 @@
+import type { Character } from '../character.types'
+
+/** 名人模式：名猫 */
+export const characterList: Character[] = [
+    { id: 1, name: '招财猫', property: { CHR: 7, INT: 5, STR: 5, MNY: 9 }, talent: [1004, 1048, 1015] },
+    { id: 2, name: '加菲猫', property: { CHR: 6, INT: 7, STR: 4, MNY: 7 }, talent: [1001, 1017, 1020] },
+    { id: 3, name: '黑猫警长', property: { CHR: 5, INT: 8, STR: 7, MNY: 5 }, talent: [1025, 1008, 1042] },
+    { id: 4, name: '猫仙人', property: { CHR: 6, INT: 9, STR: 6, MNY: 4 }, talent: [1204, 1332, 1333] },
+    { id: 5, name: '汤姆猫', property: { CHR: 6, INT: 6, STR: 7, MNY: 4 }, talent: [1047, 1043, 1003] },
+    { id: 6, name: '哆啦A梦', property: { CHR: 7, INT: 10, STR: 3, MNY: 8 }, talent: [1013, 1335, 1021] },
+    { id: 7, name: '虹猫', property: { CHR: 7, INT: 7, STR: 8, MNY: 5 }, talent: [1301, 1323, 1046] },
+    { id: 8, name: '花猫灰灰', property: { CHR: 6, INT: 6, STR: 6, MNY: 6 }, talent: [1014, 1029, 1032] },
+]

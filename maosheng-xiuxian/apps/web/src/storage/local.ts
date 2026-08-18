@@ -1,0 +1,39 @@
+if (localStorage.getItem('version') !== '3.0.0') {
+    const times = parseInt(localStorage.getItem('times') || '0')
+    if (times) {
+        const achievements = (
+            JSON.parse(localStorage.getItem('ACHV') || '[]') as [
+                number,
+                number,
+            ][]
+        )
+            .sort((a, b) => a[1] - b[1])
+            .map(([id]) => id)
+        const events = JSON.parse(localStorage.getItem('AEVT') || '[]')
+        const talents = JSON.parse(localStorage.getItem('ATLT') || '[]')
+        const profile = { times, achievements, events, talents } as any
+        const lockedTalents = JSON.parse(
+            localStorage.getItem('extendTalent') || 'null',
+        )
+        if (lockedTalents) profile.locked = [lockedTalents]
+        localStorage.setItem('profile', JSON.stringify(profile))
+        localStorage.removeItem('times')
+        localStorage.removeItem('ACHV')
+        localStorage.removeItem('AEVT')
+        localStorage.removeItem('ATLT')
+        localStorage.removeItem('extendTalent')
+        const unique = localStorage.getItem('uniqueWaTaShi')
+        if (unique) localStorage.setItem('unique', unique)
+        localStorage.removeItem('uniqueWaTaShi')
+    }
+    localStorage.setItem('version', '3.0.0')
+}
+
+export async function get(key: string) {
+    return localStorage.getItem(key)
+}
+
+export async function set(key: string, value: string) {
+    localStorage.setItem(key, value)
+    return true
+}

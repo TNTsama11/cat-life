@@ -1,0 +1,43 @@
+.screen.home {
+    gap: 2.5rem;
+    .logo {
+        color: var(--color-grade-3);
+        animation: cat-breathe 3s ease-in-out infinite;
+    }
+    .title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .main { font-weight: bold; }
+    }
+    > .actions {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        width: auto;
+        display: flex;
+        gap: 1rem;
+        >button {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0.25rem;
+        }
+    }
+    >.controls {
+        flex-direction: column;
+        > div {
+            flex: 1 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            > button { flex: 1 0; }
+        }
+    }
+}
+
+@keyframes cat-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.06); opacity: 1; }
+}

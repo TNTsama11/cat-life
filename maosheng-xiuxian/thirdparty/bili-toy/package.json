@@ -1,0 +1,10 @@
+{
+    "name": "@remake/thirdparty-bili-toy",
+    "type": "module",
+    "version": "3.0.0",
+    "main": "./index.ts",
+    "author": "Vick Scarlet <vick@syaro.io>",
+    "scripts": {
+        "lint": "bunx --bun eslint ."
+    }
+}

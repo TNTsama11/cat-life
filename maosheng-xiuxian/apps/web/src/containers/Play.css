@@ -1,0 +1,213 @@
+.screen.play {
+    height: calc(100dvh - 2rem);
+    gap: 1rem;
+    > ul.properties {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+        font-weight: bold;
+        > li {
+            display: flex;
+            flex-direction: column;
+            flex: 1 0;
+            justify-content: space-between;
+            text-align: center;
+            min-width: 6rem;
+            user-select: none;
+            color: var(--grade-color);
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 0.0625rem solid var(--grade-color);
+                box-sizing: border-box;
+                height: 2rem;
+                &:first-child {
+                    border-bottom: none;
+                }
+            }
+            .name {
+                color: var(--base-background-color);
+                background-color: var(--grade-color);
+            }
+            &.charm { order: 1 }
+            &.intelligence { order: 2 }
+            &.strength { order: 3 }
+            &.money { order: 4 }
+            &.spirit { order: 5 }
+        }
+    }
+    > ul.logs {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0;
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+        min-width: 32rem;
+        max-width: 100%;
+        height: 100%;
+        border: 0.0625rem solid var(--base-text-color);
+        box-sizing: border-box;
+        > li.log {
+            display: flex;
+            flex-direction: row;
+            line-height: 2rem;
+            gap: 0.5rem;
+            width: 100%;
+            user-select: none;
+            cursor: pointer;
+            > .age {
+                flex-shrink: 0;
+                width: 3rem;
+                height: 2rem;
+                text-align: right;
+                color: var(--color-primary);
+                font-weight: bold;
+                /* border-bottom: 0.0625rem solid var(--base-text-color); */
+                box-sizing: border-box;
+            }
+            > .content {
+                position: relative;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: -0.5rem;
+                    bottom: 0;
+                    height: calc(100% - 2rem);
+                    width: calc(100% + 0.5rem);
+                    border: 0.0625rem solid var(--base-text-color);
+                    border-top: none;
+                    border-right: none;
+                    box-sizing: border-box;
+                    pointer-events: none;
+                }
+                .tag, .name {
+                    font-weight: bold;
+                }
+            }
+        }
+        >li:last-child {
+            margin-bottom: 2rem;
+        }
+    }
+    ul.log-inner {
+        > li {
+            color: var(--grade-color);
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+    }
+    .controls {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+        > button {
+            flex: 1 0;
+            min-width: 6rem;
+            font-size: calc(1.25rem * var(--ratio-font));
+            height: calc(2.5rem * var(--ratio));
+        }
+    }
+}
+
+.screen.play > ul.properties > li {
+    .value {
+        position: relative;
+        background-color: var(--base-background-color);
+        transition: background-color 0.5s ease;
+    }
+    &[class*="trend-up"] .value::after,
+    &[class*="trend-down"] .value::after {
+        content: '';
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        border-style: solid;
+        animation: triangle-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    &[class*="trend-up"] .value::after {
+        border-width: 0 0.3125rem 0.375rem 0.3125rem;
+        border-color: transparent transparent var(--color-success) transparent;
+    }
+    &[class*="trend-down"] .value::after {
+        border-width: 0.375rem 0.3125rem 0 0.3125rem;
+        border-color: var(--color-error) transparent transparent transparent;
+    }
+    &[class*="trend-up-1"] .value { animation: flash-success-odd 0.5s ease-out forwards; }
+    &[class*="trend-up-0"] .value { animation: flash-success-even 0.5s ease-out forwards; }
+    &[class*="trend-down-1"] .value { animation: flash-error-odd 0.5s ease-out forwards; }
+    &[class*="trend-down-0"] .value { animation: flash-error-even 0.5s ease-out forwards; }
+}
+
+@keyframes flash-success-odd {
+    0% { background-color: color-mix(in srgb, var(--color-success) 30%, var(--base-background-color)); }
+    100% { background-color: var(--base-background-color); }
+}
+@keyframes flash-success-even {
+    0% { background-color: color-mix(in srgb, var(--color-success) 30%, var(--base-background-color)); }
+    100% { background-color: var(--base-background-color); }
+}
+@keyframes flash-error-odd {
+    0% { background-color: color-mix(in srgb, var(--color-error) 30%, var(--base-background-color)); }
+    100% { background-color: var(--base-background-color); }
+}
+@keyframes flash-error-even {
+    0% { background-color: color-mix(in srgb, var(--color-error) 30%, var(--base-background-color)); }
+    100% { background-color: var(--base-background-color); }
+}
+@keyframes triangle-pop {
+    0% { opacity: 0; transform: translateY(-50%) scale(0.5); }
+    100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+/* 修仙 HUD */
+.immortal-hud {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 0.0625rem solid var(--color-grade-3);
+    box-sizing: border-box;
+    .realm-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: calc(1.5rem * var(--ratio-font));
+        font-weight: bold;
+        color: var(--color-grade-3);
+    }
+    .cultivation {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        .label { font-weight: bold; white-space: nowrap; }
+        .bar {
+            flex: 1;
+            height: 0.75rem;
+            border: 0.0625rem solid var(--base-text-color);
+            box-sizing: border-box;
+            .fill {
+                height: 100%;
+                background: var(--color-grade-3);
+                transition: width 0.4s ease;
+            }
+        }
+    }
+    .meta {
+        font-size: calc(0.9rem * var(--ratio-font));
+        opacity: 0.85;
+    }
+}
+
+.screen.play > ul.properties.immortal > li {
+    &.aptitude { order: 1 }
+    &.comprehension { order: 2 }
+    &.physique { order: 3 }
+    &.fortune { order: 4 }
+    &.spiritCharm { order: 5 }
+}
