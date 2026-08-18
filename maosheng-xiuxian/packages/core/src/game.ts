@@ -119,16 +119,14 @@ function mortalEventAvailable(
  * - 城市家猫几乎不出门，生育/发情权重极低，主要靠主人带去相亲
  */
 function mortalEventWeight(eventId: Event['id'], state: GameState): number {
-    // 疾病/意外：体质和快乐越高越不容易遇到，越低越容易遇到
+    // 疾病/意外：体质和快乐越低越容易遇到；采用平滑加权，避免 5→4 时概率突然翻倍
     if (DANGER_EVENT_IDS.has(eventId)) {
         const str = state.props.current.strength
         const spr = state.props.current.spirit
         let w = 4
-        if (str <= 2) w += 16
-        else if (str <= 4) w += 8
-        if (spr <= 2) w += 14
-        else if (spr <= 4) w += 7
-        return Math.max(2, w)
+        w += Math.max(0, 4 - str) * 2
+        w += Math.max(0, 4 - spr) * 2
+        return Math.max(2, Math.round(w))
     }
     // 低出身专属正面事件：出身越低越容易遇到（条件已由事件 include 过滤）
     if (LOW_ORIGIN_EVENT_IDS.has(eventId)) {
