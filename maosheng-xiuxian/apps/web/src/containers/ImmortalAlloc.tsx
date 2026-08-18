@@ -3,7 +3,7 @@ import { immortalProperties } from '@/display'
 import { keys } from '@remake/vitex'
 import { judgeGradeByValue } from '@/config'
 import { toastMsg } from '@/toast'
-import { CatFace, RealmGlyph, Lotus, Cloud } from '@/components/CatArt'
+import { CatFace, RealmGlyph, Lotus, Cloud, Sparkle } from '@/components/CatArt'
 import { Realm } from '@remake/data'
 import './Alloc.css'
 
@@ -42,6 +42,7 @@ export function ImmortalAlloc() {
                 <div className="banner-decor" aria-hidden="true">
                     <Cloud size={44} />
                     <Lotus size={28} />
+                    <Sparkle size={18} />
                 </div>
                 <div className="transition">
                     <CatFace size={48} />

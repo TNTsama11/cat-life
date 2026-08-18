@@ -1,6 +1,6 @@
 import { useRemake, useFeatures, useGoAchv, useGoThanks } from '@remake/hooks'
 import { TextSvg } from '@/components/TextSvg'
-import { CatFace, Cloud, PawPrint, CatSilhouette } from '@/components/CatArt'
+import { CatFace, Cloud, PawPrint, CatSilhouette, Sparkle } from '@/components/CatArt'
 import ThemeToggle from '@/components/ThemeToggle'
 import Github from '@/components/Github'
 import './Home.css'
@@ -18,13 +18,15 @@ export default function Home() {
                 <CatSilhouette size={88} />
                 <PawPrint size={24} />
                 <PawPrint size={18} />
+                <Sparkle size={20} />
+                <Sparkle size={14} />
             </div>
             <div className="logo">
                 <CatFace size={96} />
             </div>
             <div className="title">
-                <TextSvg text="猫生修仙模拟器" className="main" />
-                <TextSvg text="投胎成一只猫，伐骨洗髓，飞升成仙" className="sub" />
+                <TextSvg text="猫生模拟器" className="main" />
+                <TextSvg text="投胎成一只猫，度过一生，若得仙缘还可飞升成仙" className="sub" />
             </div>
             <div className="controls">
                 <div>

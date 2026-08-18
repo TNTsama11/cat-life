@@ -40,6 +40,60 @@ function LogTalents({ items }: { items: number[] }) {
 }
 
 const year = new Date().getFullYear()
+
+const effectLabels: Record<string, string> = {
+    CHR: properties.charm,
+    INT: properties.intelligence,
+    STR: properties.strength,
+    MNY: properties.money,
+    SPR: properties.spirit,
+    LIF: '寿元',
+    AGE: properties.age,
+    SEED: '仙缘',
+    DAO: '道韵',
+    DEMON: '心魔',
+    STER: '绝育',
+}
+const immortalEffectLabels: Record<string, string> = {
+    CULT: '修为',
+    SE: '灵气',
+    DAO: '道韵',
+    DEMON: '心魔',
+    EXPO: '暴露度',
+    APT: immortalProperties.aptitude,
+    COMP: immortalProperties.comprehension,
+    PHY: immortalProperties.physique,
+    FOR: immortalProperties.fortune,
+    SPC: immortalProperties.spiritCharm,
+}
+interface EventDelta {
+    label: string
+    value: number
+    special?: boolean
+}
+function collectEventDeltas(id: number): EventDelta[] {
+    const item = events.get(id)
+    if (!item) return []
+    const deltas: EventDelta[] = []
+    if (item.effect) {
+        for (const [key, value] of Object.entries(item.effect)) {
+            if (!value) continue
+            const label = effectLabels[key]
+            if (!label) continue
+            deltas.push({ label, value, special: key === 'STER' })
+        }
+    }
+    if (item.immortalEffect) {
+        for (const [key, value] of Object.entries(item.immortalEffect)) {
+            if (!value) continue
+            const label = immortalEffectLabels[key]
+            if (!label) continue
+            deltas.push({ label, value })
+        }
+    }
+    return deltas
+}
+
 interface LogEventProps {
     id: number
     post: boolean
@@ -65,6 +119,7 @@ function EventIcon({ id, size = 18 }: { id: number; size?: number }) {
 
 function LogEvent({ id, post, index }: LogEventProps) {
     let { event, postEvent, grade, format: f } = events.get(id)!
+    const deltas = collectEventDeltas(id)
     if (f) {
         const g = (key: string) => ({ CurrentYear: year + index })[key]
         event = format(event, g)
@@ -78,6 +133,17 @@ function LogEvent({ id, post, index }: LogEventProps) {
                 </span>
                 <span>{event}</span>
             </li>
+            {deltas.length > 0 && (
+                <li className="event-effects">
+                    {deltas.map((d, i) => (
+                        <em key={i} className={d.value > 0 ? 'pos' : 'neg'}>
+                            {d.special
+                                ? d.label
+                                : `${d.label}${d.value > 0 ? '+' : ''}${d.value}`}
+                        </em>
+                    ))}
+                </li>
+            )}
             {post && postEvent && (
                 <li className={'grade-' + grade}>
                     <span className="event-icon">

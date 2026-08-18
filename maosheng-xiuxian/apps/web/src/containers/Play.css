@@ -167,6 +167,23 @@ ul.log-inner {
             opacity: 0.85;
         }
     }
+    > li.event-effects {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.6rem;
+        padding-left: 1.7rem;
+        font-size: calc(0.8rem * var(--ratio-font));
+        line-height: 1.4;
+        em {
+            font-style: normal;
+            font-family: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+            padding: 0 0.3rem;
+            border-radius: 0.3rem;
+            background: color-mix(in srgb, var(--base-text-color) 8%, transparent);
+            &.pos { color: var(--color-success); }
+            &.neg { color: var(--color-error); }
+        }
+    }
 }
 .screen.play .controls {
     display: flex;

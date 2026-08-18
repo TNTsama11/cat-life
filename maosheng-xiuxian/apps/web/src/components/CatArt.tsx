@@ -5,18 +5,21 @@ import { Realm as R } from '@remake/data'
 export function CatFace({ size = 64 }: { size?: number }) {
     return (
         <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <circle cx="20" cy="24" r="5" fill="currentColor" />
-            <circle cx="44" cy="24" r="5" fill="currentColor" />
-            <circle cx="20" cy="23" r="2" fill="var(--base-background-color)" />
-            <circle cx="44" cy="23" r="2" fill="var(--base-background-color)" />
-            <path d="M18 8 L24 18 L20 20 Z" fill="currentColor" />
-            <path d="M46 8 L40 18 L44 20 Z" fill="currentColor" />
-            <path d="M22 8 L27 17 L25 19 Z" fill="currentColor" opacity="0.7" />
-            <path d="M42 8 L37 17 L39 19 Z" fill="currentColor" opacity="0.7" />
-            <path d="M32 30 L36 36 L32 38 L28 36 Z" fill="currentColor" opacity="0.9" />
-            <path d="M26 38 Q32 44 38 38" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
-            <path d="M32 38 Q32 46 28 50 M32 38 Q32 46 36 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
-            <circle cx="32" cy="32" r="26" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.35" />
+            <path d="M16 26 L18 10 L30 20 Z" fill="currentColor" />
+            <path d="M48 26 L46 10 L34 20 Z" fill="currentColor" />
+            <path d="M18 24 L19 14 L27 20 Z" fill="var(--base-background-color)" opacity="0.85" />
+            <path d="M46 24 L45 14 L37 20 Z" fill="var(--base-background-color)" opacity="0.85" />
+            <path d="M14 40 Q12 30 20 22 Q32 14 44 22 Q52 30 50 40 Q48 52 32 55 Q16 52 14 40 Z" fill="currentColor" />
+            <path d="M32 18 L32 24 M28 19 L30 24 M36 19 L34 24" stroke="var(--base-background-color)" strokeWidth="1.6" strokeLinecap="round" opacity="0.55" />
+            <ellipse cx="22" cy="32" rx="4.2" ry="4.8" fill="var(--base-background-color)" />
+            <ellipse cx="42" cy="32" rx="4.2" ry="4.8" fill="var(--base-background-color)" />
+            <ellipse cx="23" cy="32" rx="2" ry="2.8" fill="currentColor" />
+            <ellipse cx="41" cy="32" rx="2" ry="2.8" fill="currentColor" />
+            <path d="M32 38 L30 42 L34 42 Z" fill="var(--base-background-color)" />
+            <path d="M32 42 Q32 47 28 49 M32 42 Q32 47 36 49" stroke="var(--base-background-color)" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M10 36 Q16 36 20 39 M10 42 Q16 42 20 41 M54 36 Q48 36 44 39 M54 42 Q48 42 44 41" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+            <ellipse cx="17" cy="40" rx="2" ry="1.2" fill="var(--base-background-color)" opacity="0.35" />
+            <ellipse cx="47" cy="40" rx="2" ry="1.2" fill="var(--base-background-color)" opacity="0.35" />
         </svg>
     )
 }
@@ -87,13 +90,23 @@ export function Cloud({ size = 40 }: { size?: number }) {
 export function CatSilhouette({ size = 56 }: { size?: number }) {
     return (
         <svg width={size} height={size} viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-            <path d="M18 12 L26 22 L22 24 Z" opacity="0.85" />
-            <path d="M46 12 L38 22 L42 24 Z" opacity="0.85" />
-            <path d="M14 24 Q14 14 26 16 L28 28 Q30 30 34 30 L36 16 Q50 14 50 24 Q54 30 54 38 Q54 50 44 54 L44 60 L20 60 L20 54 Q10 50 10 38 Q10 30 14 24 Z" />
+            <path d="M18 12 L26 22 L22 25 Z" opacity="0.85" />
+            <path d="M46 12 L38 22 L42 25 Z" opacity="0.85" />
+            <path d="M14 26 Q13 14 26 17 L29 29 Q31 31 35 31 L37 16 Q50 14 51 26 Q55 33 55 40 Q55 52 44 55 L44 60 L20 60 L20 55 Q9 52 9 40 Q9 33 14 26 Z" />
+            <path d="M21 57 Q10 62 9 53 Q8 46 14 44 Q16 50 21 55" opacity="0.9" />
             <circle cx="24" cy="34" r="2.5" fill="var(--base-background-color)" />
             <circle cx="40" cy="34" r="2.5" fill="var(--base-background-color)" />
             <path d="M28 42 Q32 46 36 42" stroke="var(--base-background-color)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
             <path d="M30 48 Q30 52 27 54 M34 48 Q34 52 37 54" stroke="var(--base-background-color)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+/** 星光点缀 */
+export function Sparkle({ size = 16 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2 L13.5 10 L21 12 L13.5 14 L12 22 L10.5 14 L3 12 L10.5 10 Z" />
         </svg>
     )
 }
