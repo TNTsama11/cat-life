@@ -26,7 +26,7 @@ export default function Home() {
             </div>
             <div className="title">
                 <TextSvg text="猫生模拟器" className="main" />
-                <TextSvg text="投胎成一只猫" className="sub" />
+                <TextSvg text="投胎成一只猫" className="sub" size={7} />
             </div>
             <div className="controls">
                 <div>

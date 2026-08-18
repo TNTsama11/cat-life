@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 export interface Props {
     text: string
     className: string
+    size?: number
 }
 
-export function TextSvg({ text, className }: Readonly<Props>) {
+export function TextSvg({ text, className, size = 10 }: Readonly<Props>) {
     const [height, setHeight] = useState(0)
     const [width, setWidth] = useState(0)
     const textRef = useRef<SVGTextElement>(null)
@@ -13,7 +14,7 @@ export function TextSvg({ text, className }: Readonly<Props>) {
         const { width, height } = textRef.current.getBBox()
         setWidth(width)
         setHeight(height)
-    }, [text, className, textRef])
+    }, [text, className, size, textRef])
     return (
         <svg
             className={className}
@@ -22,7 +23,7 @@ export function TextSvg({ text, className }: Readonly<Props>) {
         >
             <text
                 ref={textRef}
-                fontSize={10}
+                fontSize={size}
                 style={{
                     transform: 'translate(50%,50%)',
                     textAnchor: 'middle',
