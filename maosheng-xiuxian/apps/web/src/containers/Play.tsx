@@ -272,20 +272,12 @@ function ImmortalProperties() {
 
 function ImmortalHUD() {
     const state = useGameState()
-    const setState = useSetGameState()
     if (!state || state.phase !== 'immortal') return null
     const info = REALMS[state.realm]!
     const next = REALMS[state.realm + 1]
     const progress = next
         ? Math.min(100, Math.floor((state.cultivation / next.threshold) * 100))
         : 100
-    const toggleStance = () => {
-        setState(prev =>
-            prev
-                ? { ...prev, stance: prev.stance === 'hide' ? 'fame' : 'hide' }
-                : prev,
-        )
-    }
     return (
         <div className="immortal-hud">
             <div className="realm-badge">
@@ -311,9 +303,6 @@ function ImmortalHUD() {
                 <div className="bar">
                     <div className="fill" style={{ width: state.exposure + '%' }} />
                 </div>
-                <button className={'stance ' + state.stance} onClick={toggleStance}>
-                    {state.stance === 'hide' ? '藏拙' : '扬名'}
-                </button>
             </div>
             {state.bottleneck && (
                 <div className="bottleneck">

@@ -298,9 +298,6 @@ export function next(
             s = produce(s, draft => {
                 draft.cultivation += gain
                 draft.spiritEnergy += 1
-                // 藏拙降低暴露，扬名增加暴露（引来机缘，也引来危险）
-                const drift = draft.stance === 'fame' ? 3 : -3
-                draft.exposure = Math.min(100, Math.max(0, draft.exposure + drift))
             })
             if (shouldBreakthrough(s)) {
                 s = produce(s, draft => {
@@ -314,9 +311,8 @@ export function next(
             } else {
                 const pool = realmEvents.get(s.realm) ?? []
                 const filtered = pool.filter(([e]) => ec(e, s, profile))
-                // 机缘越高，越容易遇到高稀有度事件；扬名会额外吸引机缘与风险
-                const stanceBonus = s.stance === 'fame' ? 5 : 0
-                const fortune = (s.immortal?.current.fortune ?? 0) + stanceBonus
+                // 机缘越高，越容易遇到高稀有度事件
+                const fortune = s.immortal?.current.fortune ?? 0
                 const weighted = filtered.map(([e]) => {
                     const grade = events.get(e)?.grade ?? 0
                     const w = 1 + Math.max(0, fortune) * grade * 0.08
