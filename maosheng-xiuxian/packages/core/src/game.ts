@@ -270,18 +270,18 @@ export function next(
 
     if (s.phase === 'immortal') {
         if (s.bottleneck) {
-            // 瓶颈期：玩家在 UI 上选择突破 / 打磨 / 寻缘
-            if (s.breakthroughAction === 'breakthrough') {
+            // 瓶颈期：随机选择 突破 / 打磨 / 寻缘
+            const choice = random(2, 0, rng)
+            if (choice === 0) {
                 const br = doBreakthrough(s, rng)
                 s = br.state
                 er = triggerEvents(br.eventIds, s, profile)
-            } else if (s.breakthroughAction === 'cultivate') {
+            } else if (choice === 1) {
                 s = produce(s, draft => {
                     draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 8)
-                    draft.breakthroughAction = 'none'
                 })
                 er = etr(9702, s, profile)
-            } else if (s.breakthroughAction === 'seek') {
+            } else {
                 const found = random(99, 0, rng) < 70
                 s = produce(s, draft => {
                     if (found) {
@@ -290,15 +290,8 @@ export function next(
                         draft.tribulationPrep = Math.max(0, draft.tribulationPrep - 5)
                         draft.demonHeart += 1
                     }
-                    draft.breakthroughAction = 'none'
                 })
                 er = etr(found ? 9703 : 9704, s, profile)
-            } else {
-                // 没有选择：默认打磨一年，避免反复提示瓶颈
-                s = produce(s, draft => {
-                    draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 6)
-                })
-                er = etr(9702, s, profile)
             }
         } else {
             const gain = cultivationGain(s)

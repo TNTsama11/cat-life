@@ -317,37 +317,7 @@ function ImmortalHUD() {
             </div>
             {state.bottleneck && (
                 <div className="bottleneck">
-                    <span>瓶颈期：选择后点击下一年</span>
-                    <button
-                        className={state.breakthroughAction === 'breakthrough' ? 'active' : ''}
-                        onClick={() =>
-                            setState(prev =>
-                                prev ? { ...prev, breakthroughAction: 'breakthrough' } : prev,
-                            )
-                        }
-                    >
-                        尝试突破
-                    </button>
-                    <button
-                        className={state.breakthroughAction === 'cultivate' ? 'active' : ''}
-                        onClick={() =>
-                            setState(prev =>
-                                prev ? { ...prev, breakthroughAction: 'cultivate' } : prev,
-                            )
-                        }
-                    >
-                        打磨一年
-                    </button>
-                    <button
-                        className={state.breakthroughAction === 'seek' ? 'active' : ''}
-                        onClick={() =>
-                            setState(prev =>
-                                prev ? { ...prev, breakthroughAction: 'seek' } : prev,
-                            )
-                        }
-                    >
-                        寻找机缘
-                    </button>
+                    <span>瓶颈期：猫会随缘选择突破、打磨或寻缘</span>
                 </div>
             )}
             <div className="meta">
