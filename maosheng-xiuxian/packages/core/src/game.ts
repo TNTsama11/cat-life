@@ -294,11 +294,11 @@ export function next(
                 })
                 er = etr(found ? 9703 : 9704, s, profile)
             } else {
-                // 没有选择：瓶颈提示，并缓慢增加一点准备度
+                // 没有选择：默认打磨一年，避免反复提示瓶颈
                 s = produce(s, draft => {
-                    draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 1)
+                    draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 6)
                 })
-                er = etr(9701, s, profile)
+                er = etr(9702, s, profile)
             }
         } else {
             const gain = cultivationGain(s)
