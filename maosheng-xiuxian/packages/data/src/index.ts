@@ -28,6 +28,7 @@ import { eventList as eventListImmortal5 } from './content/events-immortal5'
 import { eventList as eventListImmortal6 } from './content/events-immortal6'
 import { eventList as eventListImmortal7 } from './content/events-immortal7'
 import { eventList as eventListMortal5 } from './content/events-mortal5'
+import { eventList as eventListMortal6 } from './content/events-mortal6'
 import { ageList } from './content/ages'
 import { achievementList } from './content/achievements'
 import { achievementList as achievementListExtra } from './content/achievements-extra'
@@ -49,6 +50,7 @@ const allEvents: Event[] = [
     ...eventListImmortal6,
     ...eventListImmortal7,
     ...eventListMortal5,
+    ...eventListMortal6,
 ]
 
 const allTalents: Talent[] = [...talentList, ...talentListExtra]
