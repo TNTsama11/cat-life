@@ -73,6 +73,10 @@ export type Event = {
         readonly DEMON?: number
         /** 妖踪暴露度变化（暴露/藏拙） */
         readonly EXPO?: number
+        /** 渡劫准备度变化（丹药/法宝/护法/心得） */
+        readonly PREP?: number
+        /** 业力/善缘变化（-恶 +善） */
+        readonly KARMA?: number
         /** 根骨 */
         readonly APT?: number
         /** 悟性 */

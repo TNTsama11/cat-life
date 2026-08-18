@@ -160,6 +160,7 @@ export const eventList: Event[] = [
 
     { id: 9407, event: '飞升劫九死一生，你虽保住性命，却从云头跌落，寿元大损。', grade: 2, NoRandom: true, tribulation: true },
     { id: 9507, event: '飞升劫下，你没能跨过最后一道天门，化作一只坠落的猫。', grade: 2, NoRandom: true, tribulation: true },
+    { id: 9508, event: '天劫把你劈得魂飞魄散，但一条命替你挡下了这一劫。', grade: 3, NoRandom: true, tribulation: true },
 
     // ============ 普通修炼事件（NoRandom，由引擎按境界/概率直接触发） ============
     { id: 9721, event: '你盘坐吐纳，灵气如溪流般汇入体内，修炼顺利。', grade: 0, NoRandom: true, immortalEffect: { CULT: 10, SE: 2 } },

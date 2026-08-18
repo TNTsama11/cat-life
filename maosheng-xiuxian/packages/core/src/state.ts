@@ -82,6 +82,7 @@ export interface GameState {
     breakthroughAction: 'none' | 'breakthrough' | 'cultivate' | 'seek' // 瓶颈期选择
     tribulationPrep: number // 渡劫准备度（0~100）
     karma: number // 业力/善缘（-100 恶 ~ +100 善）
+    tribulationDeaths: number // 已被九命/保命天赋挡下的死亡次数
 }
 
 /** 持久化存储的数据 */
@@ -129,6 +130,7 @@ export function createState(
         breakthroughAction: 'none',
         tribulationPrep: 0,
         karma: 0,
+        tribulationDeaths: 0,
     }
 }
 

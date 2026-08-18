@@ -60,6 +60,8 @@ const immortalEffectLabels: Record<string, string> = {
     DAO: '道韵',
     DEMON: '心魔',
     EXPO: '暴露度',
+    PREP: '准备度',
+    KARMA: '业力',
     APT: immortalProperties.aptitude,
     COMP: immortalProperties.comprehension,
     PHY: immortalProperties.physique,

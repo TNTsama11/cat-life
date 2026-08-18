@@ -423,6 +423,7 @@ export function applyImmortal(
         draft.breakthroughAction = 'none'
         draft.tribulationPrep = 0
         draft.karma = 0
+        draft.tribulationDeaths = 0
     })
 }
 

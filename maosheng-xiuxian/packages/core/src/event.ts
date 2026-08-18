@@ -47,6 +47,8 @@ export function trigger(
             if (immortalEffect.DAO) draft.daoInsight += immortalEffect.DAO
             if (immortalEffect.DEMON) draft.demonHeart += immortalEffect.DEMON
             if (immortalEffect.EXPO) draft.exposure = Math.min(100, Math.max(0, draft.exposure + immortalEffect.EXPO))
+            if (immortalEffect.PREP) draft.tribulationPrep = Math.min(100, Math.max(0, draft.tribulationPrep + immortalEffect.PREP))
+            if (immortalEffect.KARMA) draft.karma = Math.min(100, Math.max(-100, draft.karma + immortalEffect.KARMA))
             if (draft.immortal) {
                 const p: Partial<Parameters<typeof applyImmortalEffect>[1]> = {}
                 if (immortalEffect.APT) p.aptitude = immortalEffect.APT

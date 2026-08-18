@@ -27,6 +27,7 @@ import { eventList as eventListMortal4 } from './content/events-mortal4'
 import { eventList as eventListImmortal5 } from './content/events-immortal5'
 import { eventList as eventListImmortal6 } from './content/events-immortal6'
 import { eventList as eventListImmortal7 } from './content/events-immortal7'
+import { eventList as eventListImmortal8 } from './content/events-immortal8'
 import { eventList as eventListMortal5 } from './content/events-mortal5'
 import { eventList as eventListMortal6 } from './content/events-mortal6'
 import { eventList as eventListMortal7 } from './content/events-mortal7'
@@ -50,6 +51,7 @@ const allEvents: Event[] = [
     ...eventListImmortal5,
     ...eventListImmortal6,
     ...eventListImmortal7,
+    ...eventListImmortal8,
     ...eventListMortal5,
     ...eventListMortal6,
     ...eventListMortal7,

@@ -7,6 +7,7 @@ import { Realm, REALMS, talents, type Realm as RealmType } from '@remake/data'
 /** 特殊事件 ID（须与内容数据一致） */
 export const WASH_MARROW_EVENT = 9000
 export const ASCENSION_EVENT = 9600
+export const NINE_LIVES_EVENT = 9508
 
 export const breakthroughSuccessEvent = (realm: RealmType) => 9100 + realm
 export const breakthroughFailEvent = (realm: RealmType) => 9200 + realm
@@ -32,6 +33,15 @@ function clampChance(chance: number): number {
 
 function rollChance(chance: number, rng?: RNG): boolean {
     return random(100, 1, rng) <= Math.round(chance * 100)
+}
+
+/** 九命/保命类天赋提供的额外生命数 */
+function availableLives(state: GameState): number {
+    let lives = 0
+    if (state.talents.has(1201)) lives += 3 // 九命玄猫
+    if (state.talents.has(1007)) lives += 1 // 九条命
+    if (state.talents.has(1313)) lives += 3 // 九命护体
+    return lives
 }
 
 /** 每回合修炼所得修为（修为越高，修炼越快） */
@@ -183,7 +193,23 @@ export function doBreakthrough(
         return { state: s, eventId: final, eventIds: [...processEvents, final] }
     }
 
-    // 失败两劫以上：陨落
+    // 失败两劫以上：本应陨落，但九命/保命类天赋可以挡下
+    const totalLives = availableLives(state)
+    if (state.tribulationDeaths < totalLives) {
+        const s = produce(base, draft => {
+            draft.life = 1
+            draft.cultivation = Math.floor(prevCultivation * 0.2)
+            draft.lifespan = Math.max(1, draft.lifespan - 30)
+            draft.tribulationPrep = 0
+            draft.tribulationDeaths += 1
+        })
+        return {
+            state: s,
+            eventId: NINE_LIVES_EVENT,
+            eventIds: [...processEvents, NINE_LIVES_EVENT],
+        }
+    }
+
     const s = produce(base, draft => {
         draft.life = 0
         draft.tribulationPrep = 0
