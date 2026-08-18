@@ -51,6 +51,8 @@ const FORTUNE_HINT_EVENTS = [2501, 2502, 2503, 2504, 2505, 2506] as const
 
 /** 情感/生育类事件 */
 const ROMANCE_EVENT_IDS = new Set<Event['id']>([2138, 2423, 2471, 2472, 2473, 2474])
+/** 疾病/意外等危险事件：体质与快乐过低时会显著变多 */
+const DANGER_EVENT_IDS = new Set<Event['id']>([2018, 2056, 2057, 2058, 2536, 2540])
 /** 主人带去相亲（城市家猫的主要情感出口） */
 const MATCHMAKING_EVENT = 2138
 /** 普通事件基础权重 */
@@ -98,6 +100,17 @@ function mortalEventAvailable(
  * - 城市家猫几乎不出门，生育/发情权重极低，主要靠主人带去相亲
  */
 function mortalEventWeight(eventId: Event['id'], state: GameState): number {
+    // 疾病/意外：体质和快乐越高越不容易遇到，越低越容易遇到
+    if (DANGER_EVENT_IDS.has(eventId)) {
+        const str = state.props.current.strength
+        const spr = state.props.current.spirit
+        let w = 4
+        if (str <= 2) w += 16
+        else if (str <= 4) w += 8
+        if (spr <= 2) w += 14
+        else if (spr <= 4) w += 7
+        return Math.max(2, w)
+    }
     if (!ROMANCE_EVENT_IDS.has(eventId)) return MORTAL_BASE_WEIGHT
     if (state.adopted) {
         if (state.habitat === 'urban') {
@@ -219,7 +232,10 @@ export function next(
         }
     } else {
         let ev: number | null = null
-        if (hasSpiritRootTalent(s) && age >= 3 && age <= 6) {
+        if (age >= s.lifespan) {
+            // 寿元到了：触发寿终正寝事件，而不是随机抽到突兀的死亡
+            ev = s.adopted ? 2157 : 2156
+        } else if (hasSpiritRootTalent(s) && age >= 3 && age <= 6) {
             // 灵根猫不再“啪”一下入道：先给 1~2 次仙缘预兆，再伐骨洗髓
             if (s.immortalSeed >= 2 || age === 6) {
                 ev = WASH_MARROW_EVENT

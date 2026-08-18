@@ -50,8 +50,8 @@ export const eventList: Event[] = [
     { id: 2153, event: '你在梦里回到了小时候，追着一只蝴蝶跑个不停。', grade: 0, effect: { SPR: 1 } },
     { id: 2154, event: '你把主人当成了猫妈妈，轻轻地踩奶，呼噜声很轻很轻。', grade: 1, effect: { SPR: 2 } },
     { id: 2155, event: '你在窗边看夕阳，金色的光落满全身。', grade: 0, effect: { SPR: 1 } },
-    { id: 2156, event: '你在一个安静的午后，躺在最爱的纸箱里睡着了，再也没醒来。', grade: 1, effect: { LIF: -1 } },
-    { id: 2157, event: '你在主人怀里安详地闭上了眼睛，嘴角还带着一点点微笑。', grade: 1, effect: { LIF: -1 } },
+    { id: 2156, event: '你在一个安静的午后，躺在最爱的纸箱里睡着了，再也没醒来。', grade: 1, lethal: true },
+    { id: 2157, event: '你在主人怀里安详地闭上了眼睛，嘴角还带着一点点微笑。', grade: 1, lethal: true },
     { id: 2158, event: '你的一生，是一只猫温柔而完整的一生。', grade: 1, effect: { SPR: 2 } },
 
     // 成精前兆 / 机缘巧合（暗示修仙线）

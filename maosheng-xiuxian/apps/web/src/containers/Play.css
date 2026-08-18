@@ -45,6 +45,14 @@
         font-size: calc(0.8rem * var(--ratio-font));
         border-radius: 0.25rem;
     }
+    .lifespan {
+        padding: 0 0.4rem;
+        border: 0.0625rem solid var(--base-text-color);
+        color: var(--base-text-color);
+        font-size: calc(0.8rem * var(--ratio-font));
+        border-radius: 0.25rem;
+        opacity: 0.85;
+    }
     .romance-toggle {
         margin-left: auto;
         padding: 0 0.5rem;

@@ -86,6 +86,8 @@ export type Event = {
     }
     /** 伐骨洗髓交互事件 */
     readonly washMarrow?: boolean
+    /** 致命事件：触发后直接死亡（用于明确的死亡场景） */
+    readonly lethal?: boolean
     /** 突破事件 */
     readonly breakthrough?: boolean
     /** 渡劫事件 */

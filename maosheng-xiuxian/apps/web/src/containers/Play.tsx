@@ -340,6 +340,7 @@ function MortalStatus() {
                 {state.gender === 'male' ? '公猫' : '母猫'}
             </span>
             {state.sterilized && <span className="sterilized">已绝育</span>}
+            <span className="lifespan">寿元 {state.lifespan}岁</span>
             <button
                 className={'romance-toggle ' + (state.romanceEnabled ? 'on' : 'off')}
                 onClick={toggleRomance}

@@ -23,11 +23,11 @@ export function trigger(
     state: GameState,
     profile: ProfileState,
 ): TriggerResult<Event['id']> {
-    const { effect, immortalEffect, washMarrow, branch } = events.get(eventId)!
+    const { effect, immortalEffect, washMarrow, lethal, branch } = events.get(eventId)!
     const newState = produce(state, draft => {
         draft.events.add(eventId)
         if (effect) {
-            if (effect.LIF) draft.life += effect.LIF
+            if (effect.LIF) draft.lifespan = Math.max(0, draft.lifespan + effect.LIF)
             const pe: Partial<Properties> = {}
             if (effect.CHR) pe.charm = effect.CHR
             if (effect.INT) pe.intelligence = effect.INT
@@ -60,6 +60,7 @@ export function trigger(
             }
         }
         if (washMarrow) draft.pendingImmortalAlloc = true
+        if (lethal) draft.life = 0
     })
     const flatState = createFlatState(newState, profile)
     if (branch) {
