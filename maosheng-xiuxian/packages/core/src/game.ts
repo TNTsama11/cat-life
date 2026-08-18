@@ -255,6 +255,12 @@ export function next(
     }
 
     s = er.state
+    // 飞升是终局：触发飞升事件后猫生结束，避免之后年份反复出现空事件
+    if (s.realm >= Realm.Ascension) {
+        s = produce(s, draft => {
+            draft.life = 0
+        })
+    }
     const ar = atr(Ao.Trajectory, s, profile)
     s = ar.state
     const end = s.life < 1
