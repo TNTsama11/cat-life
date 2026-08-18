@@ -19,6 +19,14 @@ export type EventEffect = {
     readonly LIF?: number
     /** 年龄变化 */
     readonly AGE?: number
+    /** 仙缘线索（凡猫阶段铺垫伐骨洗髓） */
+    readonly SEED?: number
+    /** 道韵（修仙悟道积累） */
+    readonly DAO?: number
+    /** 心魔（修仙负面积累） */
+    readonly DEMON?: number
+    /** 标记为已绝育 */
+    readonly STER?: number
 }
 
 /** 分支路线 */
@@ -53,12 +61,28 @@ export type Event = {
     readonly format?: boolean
     /** 所属境界（凡猫事件为 Realm.Mortal / 省略；1~6 为修仙事件按境界分池） */
     readonly realm?: Realm
-    /** 修仙效果（修为/灵气变化） */
+    /** 修仙效果（修为/灵气/道韵/心魔变化） */
     readonly immortalEffect?: {
         /** 修为变化 */
         readonly CULT?: number
         /** 灵气变化 */
         readonly SE?: number
+        /** 道韵 */
+        readonly DAO?: number
+        /** 心魔 */
+        readonly DEMON?: number
+        /** 妖踪暴露度变化（暴露/藏拙） */
+        readonly EXPO?: number
+        /** 根骨 */
+        readonly APT?: number
+        /** 悟性 */
+        readonly COMP?: number
+        /** 体魄 */
+        readonly PHY?: number
+        /** 机缘 */
+        readonly FOR?: number
+        /** 灵韵 */
+        readonly SPC?: number
     }
     /** 伐骨洗髓交互事件 */
     readonly washMarrow?: boolean

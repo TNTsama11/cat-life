@@ -82,3 +82,127 @@ export function Cloud({ size = 40 }: { size?: number }) {
         </svg>
     )
 }
+
+/** 猫猫剪影（坐姿） */
+export function CatSilhouette({ size = 56 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+            <path d="M18 12 L26 22 L22 24 Z" opacity="0.85" />
+            <path d="M46 12 L38 22 L42 24 Z" opacity="0.85" />
+            <path d="M14 24 Q14 14 26 16 L28 28 Q30 30 34 30 L36 16 Q50 14 50 24 Q54 30 54 38 Q54 50 44 54 L44 60 L20 60 L20 54 Q10 50 10 38 Q10 30 14 24 Z" />
+            <circle cx="24" cy="34" r="2.5" fill="var(--base-background-color)" />
+            <circle cx="40" cy="34" r="2.5" fill="var(--base-background-color)" />
+            <path d="M28 42 Q32 46 36 42" stroke="var(--base-background-color)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+            <path d="M30 48 Q30 52 27 54 M34 48 Q34 52 37 54" stroke="var(--base-background-color)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+/** 小鱼干/鱼骨 */
+export function FishBone({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+            <path d="M5 12 C8 7 16 7 19 12 C16 17 8 17 5 12 Z" />
+            <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" />
+            <path d="M5 12 L3 9 M5 12 L3 15 M8 12 L6 9 M8 12 L6 15 M16 12 L18 9 M16 12 L18 15 M19 12 L21 9 M19 12 L21 15" />
+        </svg>
+    )
+}
+
+/** 毛线球 */
+export function YarnBall({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="8" />
+            <path d="M6 8 Q10 5 14 7 Q18 9 17 14 Q16 19 11 18 Q6 17 7 12 Q8 7 13 8" />
+            <path d="M4 13 Q2 18 7 21" />
+        </svg>
+    )
+}
+
+/** 灵剑 */
+export function SpiritSword({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M15 3 L21 9 L11 19 L5 19 L5 13 Z" />
+            <path d="M11 15 L15 11 M13 13 L17 9" opacity="0.7" />
+            <path d="M5 19 L3 21 M8 18 L6 20" opacity="0.7" />
+        </svg>
+    )
+}
+
+/** 丹鼎 */
+export function Cauldron({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M6 9 H18 L17 18 Q17 20 15 20 H9 Q7 20 7 18 Z" />
+            <path d="M6 9 Q12 12 18 9" />
+            <path d="M9 6 H15 M12 6 V3 M10 3 H14" />
+            <path d="M8 20 L7 22 M16 20 L17 22" opacity="0.7" />
+        </svg>
+    )
+}
+
+/** 符箓 */
+export function Talisman({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="5" y="3" width="14" height="18" rx="1" />
+            <path d="M8 8 H16 M8 12 H14 M8 16 H16" />
+            <path d="M10 12 L8 17 M14 12 L16 17" opacity="0.7" />
+        </svg>
+    )
+}
+
+/** 劫雷 */
+export function Thunderbolt({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M13 3 L6 13 H11 L9 21 L18 10 H13 Z" fill="currentColor" stroke="none" opacity="0.85" />
+            <path d="M13 3 L6 13 H11 L9 21 L18 10 H13 Z" />
+        </svg>
+    )
+}
+
+/** 莲花/仙途 */
+export function Lotus({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 20 C6 18 5 11 12 6 C19 11 18 18 12 20 Z" />
+            <path d="M12 20 C8 19 6 15 6 11 C9 12 11 14 12 20 Z M12 20 C16 19 18 15 18 11 C15 12 13 14 12 20 Z" opacity="0.8" />
+            <path d="M9 5 Q12 3 15 5" />
+        </svg>
+    )
+}
+
+/** 月亮/月华 */
+export function Moon({ size = 24 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M20 15 A8 8 0 1 1 9 4 A7 7 0 0 0 20 15 Z" />
+            <path d="M15 6 Q16 7 15 8 M18 9 Q19 10 18 11" opacity="0.7" />
+        </svg>
+    )
+}
+
+/** 家养/流浪状态小图标 */
+export function HomeStatus({ adopted, size = 20 }: { adopted: boolean; size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {adopted ? (
+                <>
+                    <path d="M4 11 L12 4 L20 11" />
+                    <path d="M6 10 V19 H18 V10" />
+                    <path d="M10 19 V14 H14 V19" />
+                </>
+            ) : (
+                <>
+                    <path d="M4 20 Q10 22 20 20" />
+                    <path d="M7 15 Q10 13 14 14 Q18 15 18 12 Q18 9 15 8 Q13 4 10 5 Q8 6 8 9 Q5 9 6 12" />
+                    <circle cx="9" cy="13" r="1" fill="currentColor" stroke="none" />
+                    <circle cx="14" cy="14" r="1" fill="currentColor" stroke="none" />
+                </>
+            )}
+        </svg>
+    )
+}

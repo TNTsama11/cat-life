@@ -39,7 +39,7 @@ export const eventList: Event[] = [
     { id: 2135, event: '你学会了自己开冰箱门（虽然主人改了密码）。', grade: 1, effect: { INT: 2 } },
     { id: 2136, event: '你被一只鹦鹉骂了「笨蛋」，你记仇记了三天。', grade: 0, effect: { SPR: -1 } },
     { id: 2137, event: '你在主人生病的时候，破天荒地没有捣乱，只是安静地陪着。', grade: 1, effect: { SPR: 2 } },
-    { id: 2138, event: '你被主人带去相亲，对方也是一只猫，你们一见如故。', grade: 1, effect: { SPR: 2 } },
+    { id: 2138, event: '你被主人带去相亲，对方也是一只猫，你们一见如故。', grade: 1, include: 'HOME=1&ROM=1', effect: { SPR: 2 } },
     { id: 2139, event: '你在夜里偷偷练习「捕猎」，把毛绒玩具当成猎物。', grade: 0, effect: { INT: 1 } },
     { id: 2140, event: '你在猫抓板上磨爪子，磨出了一道道深深的痕迹。', grade: 0, effect: { STR: 1 } },
 

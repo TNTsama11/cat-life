@@ -1,0 +1,71 @@
+import type { Event } from '../event.types'
+
+/**
+ * 第六批修仙事件：强调“猫修仙 ≠ 人类修仙”。
+ * 世界观：人类仍是天地主角，修仙界也以人修为主；猫是少数派，
+ * 要么被当作妖兽、灵宠、炼丹材料，要么靠自己的猫路子走出另一条道。
+ * 猫咪修炼特色：团身聚气、踩奶定神、追尾悟道、磨爪炼体、晒月吐纳、打呼噜运功。
+ */
+export const eventList: Event[] = [
+    // ============ 开灵（realm 1） ============
+    { id: 9007, event: '你照着人修的《引气诀》打坐，结果腿太短盘不起来，只好团成一个球，反而更顺了。', grade: 0, realm: 1, immortalEffect: { CULT: 7 } },
+    { id: 9008, event: '几个炼气期的人修路过，见你团在石头上吐纳，笑道：「这猫怕不是要成精？」你懒得理他们。', grade: 0, realm: 1, immortalEffect: { CULT: 6, SE: 4 } },
+    { id: 9009, event: '你发现人类修士用蒲团、焚香、念咒入定；而你在猫窝里踩了会儿奶，心境就稳了。', grade: 1, realm: 1, immortalEffect: { CULT: 9, DAO: 1 } },
+    { id: 9010, event: '你在坊市墙头听人修讲道，他们说的是人身经脉，你照着一试，灵气全往尾巴上跑。', grade: 0, realm: 1, immortalEffect: { CULT: 8, SE: 5 } },
+    { id: 9011, event: '一个散修想抓你当灵宠，你挠了他一爪，趁乱叼走他半块灵石。', grade: 1, realm: 1, effect: { STR: 1 }, immortalEffect: { CULT: 10, SE: 6 } },
+    { id: 9012, event: '你在月光下用尾巴画圈，灵气竟顺着尾巴尖转了起来——这是人修教不会的本事。', grade: 1, realm: 1, immortalEffect: { CULT: 12, SE: 8, DAO: 1 } },
+
+    // ============ 凝脉（realm 2） ============
+    { id: 9017, event: '人修所谓的筑基要筑道基，你却用一团灵毛在丹田编了个「毛线道基」，意外地结实。', grade: 1, realm: 2, immortalEffect: { CULT: 18, SE: 10 } },
+    { id: 9018, event: '你被一个小门派抓住，要给你打上灵宠烙印。你装死三天，趁他们松懈时翻墙跑了。', grade: 1, realm: 2, effect: { INT: 1 }, immortalEffect: { CULT: 16, DEMON: 1 } },
+    { id: 9019, event: '你混进一个筑基修士的讲法堂，蹲在梁上听讲，悟出的却是「猫步与遁法」。', grade: 1, realm: 2, immortalEffect: { CULT: 20, DAO: 1 } },
+    { id: 9020, event: '有猎人把你当妖兽悬赏，你反手把他设的陷阱全拆了，还留下几个爪印嘲讽。', grade: 1, realm: 2, effect: { STR: 1 }, immortalEffect: { CULT: 18, SE: 8 } },
+    { id: 9021, event: '你在灵兽阁外看见笼中困着许多小妖，你沉默了，决定做一只自由的猫。', grade: 2, realm: 2, immortalEffect: { CULT: 15, DAO: 2 } },
+    { id: 9022, event: '你用打呼噜的方式运转周天，呼噜声竟引来了几丝灵雾。', grade: 0, realm: 2, immortalEffect: { CULT: 17, SE: 10 } },
+
+    // ============ 结丹（realm 3） ============
+    { id: 9027, event: '你结丹时凝成的不是人修那样的金丹，而是一颗猫眼石般的「妖丹」，人修见了又惊又怕。', grade: 2, realm: 3, immortalEffect: { CULT: 32, SE: 15 } },
+    { id: 9028, event: '一位结丹人修要收你当坐骑，你蹲在他剑上不肯下来，最后他反而笑着称你「道兄」。', grade: 2, realm: 3, immortalEffect: { CULT: 30, DAO: 1 } },
+    { id: 9029, event: '你听说人类修士结丹要经过心魔拷问；你结丹时却在梦里追了一宿毛线球。', grade: 1, realm: 3, immortalEffect: { CULT: 28, SE: 14 } },
+    { id: 9030, event: '你被一群散修当作结丹期的妖兽围猎，他们想取你的妖丹，你且战且退，最后钻进了老鼠洞。', grade: 2, realm: 3, effect: { STR: -1 }, immortalEffect: { CULT: 24, DEMON: 1 } },
+    { id: 9031, event: '你在城中显了神通，百姓给你盖了座猫仙祠，香火比隔壁道士还旺。', grade: 2, realm: 3, immortalEffect: { CULT: 34, SE: 18, DAO: 1 } },
+    { id: 9032, event: '你和几个妖族小修聚会，大家感慨：人修有宗门靠山，我们只有一身毛。', grade: 1, realm: 3, immortalEffect: { CULT: 22, DAO: 1 } },
+
+    // ============ 化形（realm 4） ============
+    { id: 9037, event: '你的化形境妖婴还是猫形，人修见了啧啧称奇，说这「妖婴」成色不输人修的元婴。', grade: 2, realm: 4, immortalEffect: { CULT: 48, SE: 22 } },
+    { id: 9038, event: '你以化形境的猫形妖婴夜游一座人族大城，满城修士无一人发现你。', grade: 2, realm: 4, immortalEffect: { CULT: 52, DAO: 1 } },
+    { id: 9039, event: '一位化形老怪要收你当护山灵兽，你和他论道三日，他改口称你「猫道友」。', grade: 3, realm: 4, immortalEffect: { CULT: 60, DAO: 2 } },
+    { id: 9040, event: '你被几个元婴修士联手追捕，他们说你的妖婴是炼器好材料。你毁了他们的飞舟，远遁千里。', grade: 3, realm: 4, effect: { STR: 1 }, immortalEffect: { CULT: 55, DEMON: 2 } },
+    { id: 9041, event: '你开宗立派，收的不只是猫，还有被人类宗门拒之门外的狸猫、黄鼠狼和小狐妖。', grade: 2, realm: 4, immortalEffect: { CULT: 56, SE: 26, DAO: 1 } },
+    { id: 9042, event: '你回望来路，明白猫修之道不在人身经脉，而在爪、尾、毛、须之间。', grade: 2, realm: 4, immortalEffect: { CULT: 50, DAO: 2 } },
+
+    // ============ 通神（realm 5） ============
+    { id: 9047, event: '你通神那日，方圆千里的猫都仰天长啸，人修们还以为是兽潮。', grade: 3, realm: 5, immortalEffect: { CULT: 80, SE: 35 } },
+    { id: 9048, event: '一位通神人修登门挑战，说你「不过一只猫」。你用猫步绕了他三百圈，他找不到你。', grade: 3, realm: 5, immortalEffect: { CULT: 85, DAO: 1 } },
+    { id: 9049, event: '你潜入人族大派的藏书阁，专挑《御兽录》看，越看越不是滋味。', grade: 2, realm: 5, immortalEffect: { CULT: 60, DAO: 2, DEMON: 1 } },
+    { id: 9050, event: '你在妖族聚会上说：「人修的路，我们未必能走；但猫有九条命，比他们多八次试错。」众妖大悟。', grade: 3, realm: 5, immortalEffect: { CULT: 90, DAO: 3 } },
+    { id: 9051, event: '你以一猫之力，在人修与妖族之间谈下了一处猫族的栖息灵山。', grade: 3, realm: 5, immortalEffect: { CULT: 88, SE: 40, DAO: 2 } },
+    { id: 9052, event: '你发现自己的修炼法门被人修抄去，改成了《灵猫呼吸法》，在坊市卖得火热。', grade: 2, realm: 5, immortalEffect: { CULT: 70, DAO: 1 } },
+
+    // ============ 渡劫（realm 6） ============
+    { id: 9057, event: '你渡劫时，天雷竟是猫形，直直劈向你的妖丹。你用九命硬扛，人修们看得目瞪口呆。', grade: 3, realm: 6, immortalEffect: { CULT: 110, SE: 50 } },
+    { id: 9058, event: '有人修说，飞升名额是给人留的，你偏不信，你要做那只把天门挠开的猫。', grade: 3, realm: 6, immortalEffect: { CULT: 125, DAO: 3 } },
+    { id: 9059, event: '你在飞升台前回望人间，那些曾给你一碗水的人，早已轮回。你替他们多看了一眼这天地。', grade: 3, realm: 6, immortalEffect: { CULT: 105, DAO: 3 } },
+    { id: 9060, event: '你以猫身叩问天门，天道问你：「人修飞升尚需九劫，你一只猫凭什么？」你答：「凭我九条命，一条都没用。」', grade: 3, realm: 6, immortalEffect: { CULT: 140, DAO: 4, DEMON: 1 } },
+
+    // ============ 隐匿 / 暴露：有人容得下猫妖，有人容不下 ============
+    // 暴露低时，更容易遇到善意的人间烟火
+    { id: 9061, event: '你在茶馆后院晒太阳，老板娘知道你是猫妖，还是每天给你留一条小鱼干。', grade: 1, realm: 1, include: 'EXPO<30', immortalEffect: { CULT: 6, EXPO: -5 } },
+    { id: 9062, event: '一个书生见你会作揖，笑道：「妖亦有情，何况是猫？」你们成了半个朋友。', grade: 1, realm: 2, include: 'EXPO<30', immortalEffect: { CULT: 12, DAO: 1, EXPO: -5 } },
+    { id: 9063, event: '你帮一个小村赶走鼠妖，村民不介意你是猫妖，反而给你立了座猫仙祠。', grade: 2, realm: 3, include: 'EXPO<40', immortalEffect: { CULT: 25, DAO: 1, EXPO: -8 } },
+    { id: 9064, event: '你化形时被一个老农撞见，他愣了愣，然后把你抱进怀里：「我家也养过一只像你这样的猫。」', grade: 2, realm: 4, include: 'EXPO<40', immortalEffect: { CULT: 30, DAO: 2, EXPO: -10 } },
+    { id: 9065, event: '一位化神期的女修路过，见你藏在树后，笑道：「藏什么？我早就看见你了，过来吃茶。」', grade: 2, realm: 5, include: 'EXPO<40', immortalEffect: { CULT: 40, DAO: 2, EXPO: -8 } },
+    { id: 9066, event: '你藏在山间，山下的小童把你当野猫投喂，你安然度过了一个月。', grade: 0, realm: 6, include: 'EXPO<40', immortalEffect: { CULT: 30, EXPO: -5 } },
+    // 暴露高时，更容易遇到排斥与猎捕
+    { id: 9067, event: '你在集市上不小心开口说了人话，被凡人当成妖怪，追了你三条街。', grade: 1, realm: 1, include: 'EXPO>=30', immortalEffect: { CULT: -5, EXPO: 10 } },
+    { id: 9068, event: '几个筑基修士认出你是猫妖，要抓你当灵宠，你挠花了他们的脸，逃进深巷。', grade: 2, realm: 2, include: 'EXPO>=40', effect: { STR: -1 }, immortalEffect: { CULT: -10, DEMON: 1, EXPO: 10 } },
+    { id: 9069, event: '你被散修当作结丹妖兽围猎，虽逃出生天，却再也不敢在城里久留。', grade: 2, realm: 3, include: 'EXPO>=50', immortalEffect: { CULT: -15, DEMON: 1, EXPO: 8 } },
+    { id: 9070, event: '一个宗门放出话来：化形期的猫妖，活捉可换一枚通神丹。你成了行走的悬赏。', grade: 3, realm: 4, include: 'EXPO>=60', immortalEffect: { CULT: -25, DEMON: 2, EXPO: 8 } },
+    { id: 9071, event: '你在通神期威震一方，也招来了三位人修老祖联手围剿。', grade: 3, realm: 5, include: 'EXPO>=70', immortalEffect: { CULT: -40, DEMON: 3, EXPO: 5 } },
+    { id: 9072, event: '飞升前夜，整个修仙界都知道有一只猫要抢天门。有人替你助威，也有人备好了捆妖索。', grade: 3, realm: 6, include: 'EXPO>=70', immortalEffect: { CULT: 60, DEMON: 2, EXPO: 3 } },
+]

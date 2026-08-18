@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAllocator, usePointRandomizer, useLeftPoints } from '@remake/hooks'
 import { usePicked, useReplaced, useStart, useIsClassic } from '@remake/hooks'
+import { adoptionChance } from '@remake/hooks'
 import type { AdditionalPoint } from '@remake/hooks'
 import { properties } from '@/display'
 import { keys } from '@remake/vitex'
@@ -62,6 +63,7 @@ export function Alloc() {
     } = useReplaced()
     const { base, left } = useLeftPoints()
     const [{ alloc, final, base: ba }, allocator] = useAllocator()
+    const adoption = adoptionChance({ ...final, spirit: 0 })
     const random = usePointRandomizer()
     const start = useStart()
     const [showDetail, setShowDetail] = useState(false)
@@ -117,6 +119,10 @@ export function Alloc() {
                     </li>
                 ))}
             </ul>
+            <div className="adoption-hint">
+                <span>被人类收养概率</span>
+                <strong>{adoption}%</strong>
+            </div>
             <div className="controls">
                 <button className="secondary" onClick={() => random()}>
                     随机分配

@@ -1,13 +1,25 @@
 import { useState, useRef, useCallback } from 'react'
 import { useLayoutEffect, useEffect } from 'react'
-import { useNext, useGotoSummary, useGameState, useSetStep, Step, type Log } from '@remake/hooks'
+import { useNext, useGotoSummary, useGameState, useSetGameState, useSetStep, Step, type Log } from '@remake/hooks'
 import { useJudge } from '@/hooks/judge'
 import { achievements, events, talents, REALMS } from '@remake/data'
 import { properties, immortalProperties } from '@/display'
 import { AutoInterval, judgeGradeByValue } from '@/config'
 import { format, keys } from '@remake/vitex'
 import { toastAchvs } from '@/toast/Achv'
-import { RealmGlyph } from '@/components/CatArt'
+import {
+    RealmGlyph,
+    HomeStatus,
+    PawPrint,
+    CatSilhouette,
+    SpiritSword,
+    Cauldron,
+    Talisman,
+    Thunderbolt,
+    Lotus,
+    Moon,
+    Cloud,
+} from '@/components/CatArt'
 import './Play.css'
 
 function LogTalent({ id }: { id: number }) {
@@ -33,6 +45,24 @@ interface LogEventProps {
     post: boolean
     index: number
 }
+function EventIcon({ id, size = 18 }: { id: number; size?: number }) {
+    const item = events.get(id)
+    if (!item) return null
+    if (item.washMarrow) return <CatSilhouette size={size} />
+    if (item.ascension) return <Lotus size={size} />
+    if (item.tribulation) return <Thunderbolt size={size} />
+    if (item.breakthrough) return <SpiritSword size={size} />
+    switch (item.realm) {
+        case 1: return <Moon size={size} />
+        case 2: return <Cauldron size={size} />
+        case 3: return <SpiritSword size={size} />
+        case 4: return <Lotus size={size} />
+        case 5: return <Talisman size={size} />
+        case 6: return <Thunderbolt size={size} />
+        default: return <PawPrint size={size} />
+    }
+}
+
 function LogEvent({ id, post, index }: LogEventProps) {
     let { event, postEvent, grade, format: f } = events.get(id)!
     if (f) {
@@ -42,9 +72,19 @@ function LogEvent({ id, post, index }: LogEventProps) {
     }
     return (
         <>
-            <li className={'grade-' + grade}>{event}</li>
+            <li className={'grade-' + grade}>
+                <span className="event-icon">
+                    <EventIcon id={id} />
+                </span>
+                <span>{event}</span>
+            </li>
             {post && postEvent && (
-                <li className={'grade-' + grade}>{postEvent}</li>
+                <li className={'grade-' + grade}>
+                    <span className="event-icon">
+                        <EventIcon id={id} />
+                    </span>
+                    <span>{postEvent}</span>
+                </li>
             )}
         </>
     )
@@ -164,17 +204,28 @@ function ImmortalProperties() {
 
 function ImmortalHUD() {
     const state = useGameState()
+    const setState = useSetGameState()
     if (!state || state.phase !== 'immortal') return null
     const info = REALMS[state.realm]!
     const next = REALMS[state.realm + 1]
     const progress = next
         ? Math.min(100, Math.floor((state.cultivation / next.threshold) * 100))
         : 100
+    const toggleStance = () => {
+        setState(prev =>
+            prev
+                ? { ...prev, stance: prev.stance === 'hide' ? 'fame' : 'hide' }
+                : prev,
+        )
+    }
     return (
         <div className="immortal-hud">
             <div className="realm-badge">
                 <RealmGlyph realm={state.realm} size={24} />
                 {info.name}
+                {info.humanName !== info.name && (
+                    <span className="human-name">（人修称{info.humanName}）</span>
+                )}
             </div>
             <div className="cultivation">
                 <span className="label">
@@ -185,7 +236,53 @@ function ImmortalHUD() {
                     <div className="fill" style={{ width: progress + '%' }} />
                 </div>
             </div>
-            <div className="meta">寿元 {state.lifespan} · 猫龄 {state.props.current.age}</div>
+            <div className="exposure">
+                <span className="label">
+                    妖踪暴露度 {state.exposure}
+                </span>
+                <div className="bar">
+                    <div className="fill" style={{ width: state.exposure + '%' }} />
+                </div>
+                <button className={'stance ' + state.stance} onClick={toggleStance}>
+                    {state.stance === 'hide' ? '藏拙' : '扬名'}
+                </button>
+            </div>
+            <div className="meta">
+                寿元 {state.lifespan} · 猫龄 {state.props.current.age} · 道韵 {state.daoInsight} · 心魔 {state.demonHeart}
+            </div>
+        </div>
+    )
+}
+
+function MortalStatus() {
+    const state = useGameState()
+    const setState = useSetGameState()
+    if (!state || state.phase !== 'mortal') return null
+    const toggleRomance = () => {
+        setState(prev =>
+            prev ? { ...prev, romanceEnabled: !prev.romanceEnabled } : prev,
+        )
+    }
+    return (
+        <div className={'mortal-status ' + (state.adopted ? 'adopted' : 'stray')}>
+            <HomeStatus adopted={state.adopted} size={22} />
+            <span>
+                {state.adopted
+                    ? state.habitat === 'urban' ? '城市家猫' : '农村家猫'
+                    : '流浪猫'}
+                {' · '}
+                {state.gender === 'male' ? '公猫' : '母猫'}
+            </span>
+            {state.sterilized && <span className="sterilized">已绝育</span>}
+            <button
+                className={'romance-toggle ' + (state.romanceEnabled ? 'on' : 'off')}
+                onClick={toggleRomance}
+            >
+                情感生育：{state.romanceEnabled ? '开' : '关'}
+            </button>
+            {state.immortalSeed > 0 && (
+                <span className="seed">仙缘线索 {state.immortalSeed}/2</span>
+            )}
         </div>
     )
 }
@@ -200,7 +297,12 @@ function StatsPanel() {
             </>
         )
     }
-    return <Properties />
+    return (
+        <>
+            <MortalStatus />
+            <Properties />
+        </>
+    )
 }
 
 export function Play() {
@@ -237,6 +339,12 @@ export function Play() {
     }, [state?.pendingImmortalAlloc, setStep])
     return (
         <div className="screen play">
+            <div className="play-decor" aria-hidden="true">
+                <Cloud size={64} />
+                <Moon size={36} />
+                <PawPrint size={22} />
+                <PawPrint size={16} />
+            </div>
             <StatsPanel />
             <ul
                 className="logs hide-scrollbar"

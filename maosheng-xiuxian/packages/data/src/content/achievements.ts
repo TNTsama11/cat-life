@@ -20,11 +20,11 @@ export const achievementList: Achievement[] = [
 
     // ============ 修仙成就 ============
     { id: 1101, name: '仙缘已至', description: '你触发了伐骨洗髓，踏入修仙。', grade: 2, condition: 'PHASE=1', hide: false, opportunity: O.Trajectory },
-    { id: 1102, name: '炼气小成', description: '你踏入了炼气期。', grade: 0, condition: 'REALM>=1', hide: false, opportunity: O.Trajectory },
-    { id: 1103, name: '筑基有成', description: '你筑成了道基。', grade: 1, condition: 'REALM>=2', hide: false, opportunity: O.Trajectory },
-    { id: 1104, name: '金丹大道', description: '你凝成了金丹。', grade: 2, condition: 'REALM>=3', hide: false, opportunity: O.Trajectory },
-    { id: 1105, name: '元婴出窍', description: '你破丹成婴。', grade: 2, condition: 'REALM>=4', hide: false, opportunity: O.Trajectory },
-    { id: 1106, name: '化神之境', description: '你化神成功，神识如海。', grade: 3, condition: 'REALM>=5', hide: false, opportunity: O.Trajectory },
+    { id: 1102, name: '开灵小成', description: '你踏入了开灵期。', grade: 0, condition: 'REALM>=1', hide: false, opportunity: O.Trajectory },
+    { id: 1103, name: '凝脉有成', description: '你筑成了道基。', grade: 1, condition: 'REALM>=2', hide: false, opportunity: O.Trajectory },
+    { id: 1104, name: '结丹大道', description: '你结成了妖丹。', grade: 2, condition: 'REALM>=3', hide: false, opportunity: O.Trajectory },
+    { id: 1105, name: '化形出窍', description: '你破丹化形。', grade: 2, condition: 'REALM>=4', hide: false, opportunity: O.Trajectory },
+    { id: 1106, name: '通神之境', description: '你通神成功，神识如海。', grade: 3, condition: 'REALM>=5', hide: false, opportunity: O.Trajectory },
     { id: 1107, name: '渡劫真君', description: '你踏入了渡劫境。', grade: 3, condition: 'REALM>=6', hide: false, opportunity: O.Trajectory },
     { id: 1108, name: '飞升猫仙', description: '你飞升成仙，位列仙班。', grade: 3, condition: 'REALM>=7', hide: false, opportunity: O.Summary },
     { id: 1109, name: '渡劫老手', description: '你渡过至少一次天劫。', grade: 2, condition: 'TRIB>=1', hide: false, opportunity: O.Trajectory },

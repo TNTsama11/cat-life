@@ -2,7 +2,7 @@ import type { Event } from '../event.types'
 
 /** 追加修仙事件（按境界分池，realm 1~6） */
 export const eventList: Event[] = [
-    // ===== 炼气（realm 1）=====
+    // ===== 开灵（realm 1）=====
     { id: 6001, event: '你盘坐在屋顶，学着吞吐月华，差点一头栽下去。', grade: 0, realm: 1, immortalEffect: { CULT: 6 } },
     { id: 6002, event: '你在河边照见自己的倒影，发现尾巴尖上冒出一缕灵气。', grade: 0, realm: 1, immortalEffect: { SE: 5 } },
     { id: 6003, event: '你偷吃了供桌上的贡品，被庙里的老和尚发现，他竟没怪你，还摸了摸你的头。', grade: 1, realm: 1, immortalEffect: { CULT: 10, SE: 5 } },
@@ -16,7 +16,7 @@ export const eventList: Event[] = [
     { id: 6011, event: '你发现晒太阳时，灵气会自己往身体里钻。', grade: 0, realm: 1, immortalEffect: { CULT: 7, SE: 5 } },
     { id: 6012, event: '你在庙会上被一个说书人认了出来，他说你是「猫仙转世」。', grade: 1, realm: 1, immortalEffect: { CULT: 10, SE: 5 } },
 
-    // ===== 筑基（realm 2）=====
+    // ===== 凝脉（realm 2）=====
     { id: 6101, event: '你筑成道基后，连脚步都轻快了几分，抓老鼠更利索了。', grade: 0, realm: 2, effect: { STR: 1 }, immortalEffect: { CULT: 16 } },
     { id: 6102, event: '你在山涧边打坐，一坐就是三天三夜，醒来时身上落了只蝴蝶。', grade: 1, realm: 2, immortalEffect: { CULT: 20, SE: 10 } },
     { id: 6103, event: '你学会了御风，能从墙头一路飘到房顶，帅得隔壁母猫都看呆了。', grade: 1, realm: 2, effect: { CHR: 1 }, immortalEffect: { CULT: 18 } },
@@ -25,16 +25,16 @@ export const eventList: Event[] = [
     { id: 6106, event: '你夜观天象，竟从星辰运行中悟出了一丝道韵。', grade: 2, realm: 2, immortalEffect: { CULT: 28 } },
     { id: 6107, event: '你收了第二只小弟——一只会说话的鹦鹉，它天天喊你「猫爷」。', grade: 1, realm: 2, immortalEffect: { CULT: 16, SE: 8 } },
     { id: 6108, event: '你在深山里寻到一眼灵泉，喝了个痛快。', grade: 1, realm: 2, immortalEffect: { CULT: 22, SE: 12 } },
-    { id: 6109, event: '你被一只筑基后期的猫妖追杀，逃进了一座古阵，反而得了机缘。', grade: 2, realm: 2, immortalEffect: { CULT: 26, SE: 12 } },
+    { id: 6109, event: '你被一只凝脉后期的猫妖追杀，逃进了一座古阵，反而得了机缘。', grade: 2, realm: 2, immortalEffect: { CULT: 26, SE: 12 } },
     { id: 6110, event: '你学会了炼丹，第一炉就炸了炉，把自己炸成了黑炭猫。', grade: 0, realm: 2, effect: { CHR: -1 }, immortalEffect: { CULT: 15 } },
     { id: 6111, event: '你在屋顶吸收雷雨前的灵气，毛都竖了起来。', grade: 0, realm: 2, immortalEffect: { CULT: 17, SE: 10 } },
     { id: 6112, event: '你帮一个凡人小村赶走了作祟的鼠妖，村长给你立了个猫仙祠。', grade: 2, realm: 2, immortalEffect: { CULT: 24, SE: 12 } },
 
-    // ===== 金丹（realm 3）=====
-    { id: 6201, event: '你凝成金丹后，方圆百里的猫都跑来朝拜你。', grade: 1, realm: 3, immortalEffect: { CULT: 30, SE: 15 } },
+    // ===== 结丹（realm 3）=====
+    { id: 6201, event: '你结成妖丹后，方圆百里的猫都跑来朝拜你。', grade: 1, realm: 3, immortalEffect: { CULT: 30, SE: 15 } },
     { id: 6202, event: '你御剑飞过一座古城，俯瞰万家灯火，忽觉仙凡之别。', grade: 1, realm: 3, effect: { AGE: 1 }, immortalEffect: { CULT: 32 } },
     { id: 6203, event: '你在拍卖会上用一瓶猫薄荷，换到了一枚上古妖丹碎片。', grade: 2, realm: 3, immortalEffect: { CULT: 38, SE: 18 } },
-    { id: 6204, event: '你收服了一只金丹期的虎妖当坐骑，猫骑虎，威风凛凛。', grade: 2, realm: 3, effect: { STR: 2 }, immortalEffect: { CULT: 36 } },
+    { id: 6204, event: '你收服了一只结丹期的虎妖当坐骑，猫骑虎，威风凛凛。', grade: 2, realm: 3, effect: { STR: 2 }, immortalEffect: { CULT: 36 } },
     { id: 6205, event: '你在秘境里与一位剑修比剑，输了一招，却悟出了自己的剑意。', grade: 2, realm: 3, immortalEffect: { CULT: 40 } },
     { id: 6206, event: '你炼出一枚驻颜丹，猫生从此容颜不老。', grade: 1, realm: 3, effect: { CHR: 1 }, immortalEffect: { CULT: 30, SE: 15 } },
     { id: 6207, event: '你闭关三十年，出关时，当初的小猫崽都已经当了猫奶奶。', grade: 0, realm: 3, effect: { AGE: 30 }, immortalEffect: { CULT: 60 } },
@@ -44,24 +44,24 @@ export const eventList: Event[] = [
     { id: 6211, event: '你收了个人族徒弟，那小子天天给你上供小鱼干。', grade: 1, realm: 3, immortalEffect: { CULT: 30, SE: 15 } },
     { id: 6212, event: '你在雷雨天主动引雷淬体，疼得嗷嗷叫，但收获颇丰。', grade: 1, realm: 3, effect: { STR: 1 }, immortalEffect: { CULT: 35, SE: 20 } },
 
-    // ===== 元婴（realm 4）=====
-    { id: 6301, event: '你的元婴是个巴掌大的小猫，还会冲你眨眼。', grade: 2, realm: 4, immortalEffect: { CULT: 45, SE: 20 } },
-    { id: 6302, event: '你元婴出窍夜游，看见凡人看不见的妖鬼世界。', grade: 1, realm: 4, immortalEffect: { CULT: 48, SE: 22 } },
+    // ===== 化形（realm 4）=====
+    { id: 6301, event: '你的化形是个巴掌大的小猫，还会冲你眨眼。', grade: 2, realm: 4, immortalEffect: { CULT: 45, SE: 20 } },
+    { id: 6302, event: '你的妖婴出窍夜游，看见凡人看不见的妖鬼世界。', grade: 1, realm: 4, immortalEffect: { CULT: 48, SE: 22 } },
     { id: 6303, event: '你在星空古路上闭关两百年，悟透了「猫生如梦」。', grade: 2, realm: 4, effect: { AGE: 200 }, immortalEffect: { CULT: 110 } },
-    { id: 6304, event: '你与一只化神期的九尾狐论道，被点化了几句，受益匪浅。', grade: 2, realm: 4, immortalEffect: { CULT: 60, SE: 25 } },
+    { id: 6304, event: '你与一只通神期的九尾狐论道，被点化了几句，受益匪浅。', grade: 2, realm: 4, immortalEffect: { CULT: 60, SE: 25 } },
     { id: 6305, event: '你在上古战场捡到半截仙兵，炼化后实力大涨。', grade: 3, realm: 4, effect: { STR: 2 }, immortalEffect: { CULT: 70, SE: 30 } },
     { id: 6306, event: '你开宗立派，收了三百猫弟子，成为一代猫祖。', grade: 2, realm: 4, immortalEffect: { CULT: 55, SE: 25 } },
-    { id: 6307, event: '你炼化了元婴中期，神识能覆盖整个山谷。', grade: 0, realm: 4, immortalEffect: { CULT: 50, SE: 22 } },
-    { id: 6308, event: '你在仙府遗迹中寻得一枚元婴丹，修为精进。', grade: 2, realm: 4, immortalEffect: { CULT: 65, SE: 28 } },
+    { id: 6307, event: '你炼化了化形中期，神识能覆盖整个山谷。', grade: 0, realm: 4, immortalEffect: { CULT: 50, SE: 22 } },
+    { id: 6308, event: '你在仙府遗迹中寻得一枚化形丹，修为精进。', grade: 2, realm: 4, immortalEffect: { CULT: 65, SE: 28 } },
     { id: 6309, event: '你渡海时遇上了万年老龟，它驮着你游了三千里，还讲了一路修行心得。', grade: 2, realm: 4, immortalEffect: { CULT: 60, SE: 25 } },
     { id: 6310, event: '你与一位元婴修士结成道侣，双修之下修为突飞猛进。', grade: 2, realm: 4, immortalEffect: { CULT: 70, SE: 30 } },
     { id: 6311, event: '你在昆仑秘境夺得一枚上古灵乳，一滴抵十年苦修。', grade: 3, realm: 4, immortalEffect: { CULT: 80, SE: 35 } },
     { id: 6312, event: '你回望凡间，曾经的主人家早已物是人非，你悄悄在他们的墓前放了一条小鱼干。', grade: 1, realm: 4, immortalEffect: { CULT: 50 } },
 
-    // ===== 化神（realm 5）=====
-    { id: 6401, event: '你化神之后，一个念头便能移山填海。', grade: 2, realm: 5, immortalEffect: { CULT: 65, SE: 30 } },
+    // ===== 通神（realm 5）=====
+    { id: 6401, event: '你通神之后，一个念头便能移山填海。', grade: 2, realm: 5, immortalEffect: { CULT: 65, SE: 30 } },
     { id: 6402, event: '你在混沌之地闭关三百年，出来时已沧海桑田。', grade: 1, realm: 5, effect: { AGE: 300 }, immortalEffect: { CULT: 150 } },
-    { id: 6403, event: '你与一条化神期的真龙谈笑风生，还蹭了它一片龙鳞。', grade: 2, realm: 5, effect: { STR: 2 }, immortalEffect: { CULT: 80, SE: 35 } },
+    { id: 6403, event: '你与一条通神期的真龙谈笑风生，还蹭了它一片龙鳞。', grade: 2, realm: 5, effect: { STR: 2 }, immortalEffect: { CULT: 80, SE: 35 } },
     { id: 6404, event: '你炼化了一缕混沌气，肉身蜕变，堪比仙体。', grade: 3, realm: 5, effect: { STR: 3 }, immortalEffect: { CULT: 95, SE: 40 } },
     { id: 6405, event: '你在九天之上观劫云聚散，对天劫有了新的领悟。', grade: 2, realm: 5, immortalEffect: { CULT: 85, SE: 35 } },
     { id: 6406, event: '你以猫身证道，引来了八方猫族来贺。', grade: 2, realm: 5, immortalEffect: { CULT: 75, SE: 35 } },
@@ -70,7 +70,7 @@ export const eventList: Event[] = [
     { id: 6409, event: '你在星空尽头找到一颗妖星，炼化了其中蕴藏的上古妖力。', grade: 3, realm: 5, immortalEffect: { CULT: 100, SE: 45 } },
     { id: 6410, event: '你收了九条命为代价，换得一次渡劫的护身符。', grade: 3, realm: 5, immortalEffect: { CULT: 80, SE: 40 } },
     { id: 6411, event: '你回望自己走过的路，从一只纸箱里的小奶猫，到如今的一方大能。', grade: 1, realm: 5, immortalEffect: { CULT: 75 } },
-    { id: 6412, event: '你在化神巅峰闭关，只差临门一脚，便可踏入渡劫。', grade: 0, realm: 5, immortalEffect: { CULT: 88, SE: 40 } },
+    { id: 6412, event: '你在通神巅峰闭关，只差临门一脚，便可踏入渡劫。', grade: 0, realm: 5, immortalEffect: { CULT: 88, SE: 40 } },
 
     // ===== 渡劫（realm 6）=====
     { id: 6501, event: '你踏入渡劫境，每次呼吸都牵动着天地灵气。', grade: 2, realm: 6, immortalEffect: { CULT: 90, SE: 45 } },

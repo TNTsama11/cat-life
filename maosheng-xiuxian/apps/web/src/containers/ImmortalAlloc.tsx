@@ -3,7 +3,7 @@ import { immortalProperties } from '@/display'
 import { keys } from '@remake/vitex'
 import { judgeGradeByValue } from '@/config'
 import { toastMsg } from '@/toast'
-import { CatFace, RealmGlyph } from '@/components/CatArt'
+import { CatFace, RealmGlyph, Lotus, Cloud } from '@/components/CatArt'
 import { Realm } from '@remake/data'
 import './Alloc.css'
 
@@ -39,13 +39,17 @@ export function ImmortalAlloc() {
     return (
         <div className="screen point-allocation immortal-alloc">
             <div className="immortal-banner">
+                <div className="banner-decor" aria-hidden="true">
+                    <Cloud size={44} />
+                    <Lotus size={28} />
+                </div>
                 <div className="transition">
                     <CatFace size={48} />
                     <span className="arrow">→</span>
                     <RealmGlyph realm={Realm.QiRefining} size={48} />
                 </div>
                 <h2>伐骨洗髓</h2>
-                <p>仙缘已至，重铸仙根。分配 20 点仙侠五维，从此踏上修仙之路。</p>
+                <p>仙缘已至，重铸仙根。人修有宗门，猫修有猫道——团身、踩奶、追尾、磨爪，皆可入道。</p>
             </div>
             <ul className="alloc classic">
                 <li className={'left left-' + left}>

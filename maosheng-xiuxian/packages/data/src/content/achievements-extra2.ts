@@ -20,4 +20,8 @@ export const achievementList: Achievement[] = [
     { id: 1138, name: '飞升诀', description: '你寻得过飞升诀。', grade: 2, condition: 'EVT=6910|EVT=7611', hide: false, opportunity: O.Trajectory },
     { id: 1139, name: '历劫重生', description: '你渡劫失败却活了下来。', grade: 2, condition: 'EVT=9403|EVT=9404|EVT=9405|EVT=9406', hide: false, opportunity: O.Trajectory },
     { id: 1140, name: '猫族老祖', description: '你开宗立派，成为猫族老祖。', grade: 3, condition: 'EVT=6306|EVT=7605', hide: false, opportunity: O.Trajectory },
+    { id: 1141, name: '人修眼中的异类', description: '你被人类修士当成妖兽、灵宠或材料，但你活下来了。', grade: 1, condition: 'EVT=9008|EVT=9018|EVT=9030|EVT=9040', hide: false, opportunity: O.Trajectory },
+    { id: 1142, name: '猫有猫道', description: '你悟出了属于自己的修炼路子。', grade: 2, condition: 'EVT=9012|EVT=9019|EVT=9042', hide: false, opportunity: O.Trajectory },
+    { id: 1143, name: '灵宠惊魂', description: '你从想抓你当灵宠的人修手里逃过一劫。', grade: 1, condition: 'EVT=9011|EVT=9018', hide: false, opportunity: O.Trajectory },
+    { id: 1144, name: '敢把天门挠开', description: '你决定以猫身叩问天门。', grade: 3, condition: 'EVT=9058|EVT=9060', hide: false, opportunity: O.Trajectory },
 ]

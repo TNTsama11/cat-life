@@ -17,8 +17,11 @@ export const tribulationDeathEvent = (realm: RealmType) => 9500 + realm
 /** 每回合修炼所得修为（修为越高，修炼越快） */
 export function cultivationGain(state: GameState): number {
     if (state.phase !== 'immortal' || !state.immortal) return 0
-    const { aptitude, comprehension } = state.immortal.current
-    const base = 8 + aptitude + comprehension
+    const { aptitude, comprehension, spiritCharm } = state.immortal.current
+    const dao = Math.max(0, state.daoInsight ?? 0)
+    const demon = Math.max(0, state.demonHeart ?? 0)
+    // 猫修特色：灵韵（spiritCharm）是猫咪与天地灵气的亲和力，人类修士没有这条捷径
+    const base = 8 + aptitude + comprehension + spiritCharm + dao - demon * 2
     const realmFactor = Math.pow(2, Math.max(0, state.realm - 1))
     const se = Math.min(3, 1 + state.spiritEnergy / 200)
     return Math.max(1, Math.floor(base * realmFactor * se))
@@ -47,7 +50,7 @@ export function doBreakthrough(
     const im = state.immortal!.current
     const { aptitude, comprehension, physique, fortune } = im
 
-    // 成功率：普通突破看 根骨+悟性；渡劫看 体魄+机缘+根骨悟性
+    // 成功率：普通突破看 根骨+悟性；渡劫看 体魄+机缘+根骨悟性；道韵增益、心魔减益
     let chance = 0.5 + (aptitude + comprehension) * 0.03
     if (info.tribulation) {
         chance =
@@ -56,6 +59,8 @@ export function doBreakthrough(
             fortune * 0.02 +
             (aptitude + comprehension) * 0.015
     }
+    chance += (state.daoInsight ?? 0) * 0.01 - (state.demonHeart ?? 0) * 0.02
+    chance = Math.min(0.95, Math.max(0.05, chance))
     const success = random(100, 1, rng) <= Math.round(chance * 100)
 
     if (success) {

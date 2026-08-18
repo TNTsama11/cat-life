@@ -33,7 +33,7 @@ export const eventList: Event[] = [
     { id: 2021, event: '你学会了一招「躺倒装死」，逗得主人哈哈大笑。', grade: 0, effect: { CHR: 1, SPR: 1 } },
     { id: 2022, event: '你第一次吃到猫条，从此明白了什么叫「人间美味」。', grade: 0, effect: { SPR: 1 } },
     { id: 2023, event: '你在猫抓板上磨爪，磨出了一股杀气。', grade: 0, effect: { STR: 1 } },
-    { id: 2024, event: '你被带去做了绝育，从此看破红尘。', grade: 1, effect: { INT: 1, SPR: -1 } },
+    { id: 2024, event: '你被带去做了绝育，从此看破红尘。', grade: 1, exclude: 'STER=1', effect: { INT: 1, SPR: -1, STER: 1 } },
     { id: 2025, event: '你学会了用脑袋顶开主人房门。', grade: 0, effect: { INT: 1 } },
     { id: 2026, event: '你偷溜出门，在外面浪了一天一夜才回家。', grade: 1, effect: { INT: 1, STR: 1 } },
     { id: 2027, event: '你交到了一只猫朋友，你们一起晒太阳。', grade: 0, effect: { SPR: 2 } },
@@ -71,7 +71,7 @@ export const eventList: Event[] = [
     { id: 2059, event: '你被主人永远地记住，他们说：「{猫名}是我们家的猫。」', grade: 1, format: true, effect: { SPR: 2 } },
     { id: 2060, event: '你在梦里变成了人形，醒来后久久回不过神。', grade: 0, effect: { INT: 1 } },
 
-    // ============ 修仙事件 · 炼气（realm 1） ============
+    // ============ 修仙事件 · 开灵（realm 1） ============
     { id: 3001, event: '你吞吐着天地间第一缕灵气，猫耳微微颤动。', grade: 0, realm: 1, immortalEffect: { SE: 5, CULT: 3 } },
     { id: 3002, event: '你学会了引气入体，从此告别凡猫。', grade: 1, realm: 1, immortalEffect: { CULT: 8 } },
     { id: 3003, event: '你在月下打坐，月光化作丝丝灵气汇入体内。', grade: 0, realm: 1, immortalEffect: { CULT: 6, SE: 3 } },
@@ -83,38 +83,38 @@ export const eventList: Event[] = [
     { id: 3009, event: '你在夜里看见一只会发光的蝴蝶，追着它跑了半宿。', grade: 0, realm: 1, immortalEffect: { SE: 5 } },
     { id: 3010, event: '你学会了用尾巴勾动灵气，修炼快了一分。', grade: 0, realm: 1, immortalEffect: { CULT: 6 } },
 
-    // ============ 修仙事件 · 筑基（realm 2） ============
+    // ============ 修仙事件 · 凝脉（realm 2） ============
     { id: 3101, event: '你在丹田筑起道基，只觉浑身轻灵。', grade: 1, realm: 2, immortalEffect: { CULT: 15, SE: 8 } },
     { id: 3102, event: '你闭关三个月，出关时气息浑厚了不少。', grade: 0, realm: 2, immortalEffect: { CULT: 18, SE: 10 } },
     { id: 3103, event: '你在一处灵泉里泡了个澡，洗去了一身凡尘。', grade: 1, realm: 2, immortalEffect: { CULT: 20, SE: 12 } },
     { id: 3104, event: '你学会了御物之术，能隔空取猫条了。', grade: 1, realm: 2, immortalEffect: { CULT: 15 } },
-    { id: 3105, event: '你被一只筑基期的猫妖挑衅，打了一架，赢了。', grade: 1, realm: 2, effect: { STR: 1 }, immortalEffect: { CULT: 18 } },
+    { id: 3105, event: '你被一只凝脉期的猫妖挑衅，打了一架，赢了。', grade: 1, realm: 2, effect: { STR: 1 }, immortalEffect: { CULT: 18 } },
     { id: 3106, event: '你在集市上看到有人在卖灵兽丹，你馋得走不动道。', grade: 0, realm: 2, immortalEffect: { SE: 8 } },
     { id: 3107, event: '你收了第一只小弟——一只开了灵智的老鼠。', grade: 1, realm: 2, immortalEffect: { CULT: 15, SE: 8 } },
     { id: 3108, event: '你误入一处古修士洞府，捡到了几块灵石。', grade: 2, realm: 2, immortalEffect: { CULT: 25, SE: 15 } },
 
-    // ============ 修仙事件 · 金丹（realm 3） ============
-    { id: 3201, event: '你凝成金丹，体内仿佛有颗小太阳。', grade: 1, realm: 3, immortalEffect: { CULT: 30, SE: 15 } },
+    // ============ 修仙事件 · 结丹（realm 3） ============
+    { id: 3201, event: '你结成了一颗猫眼般的妖丹，体内仿佛有颗小太阳。', grade: 1, realm: 3, immortalEffect: { CULT: 30, SE: 15 } },
     { id: 3202, event: '你御剑飞行，第一次从云端俯瞰大地。', grade: 1, realm: 3, immortalEffect: { CULT: 28, SE: 12 } },
-    { id: 3203, event: '你参加了一场金丹猫修的法会，大开眼界。', grade: 1, realm: 3, immortalEffect: { CULT: 30 } },
+    { id: 3203, event: '你参加了一场结丹猫修的法会，大开眼界。', grade: 1, realm: 3, immortalEffect: { CULT: 30 } },
     { id: 3204, event: '你在秘境里寻得一枚上古灵果，一口吞下。', grade: 2, realm: 3, immortalEffect: { CULT: 40, SE: 20 } },
     { id: 3205, event: '你斩了一只为祸乡里的蛇妖，乡民给你立了牌位。', grade: 2, realm: 3, effect: { STR: 1 }, immortalEffect: { CULT: 35 } },
     { id: 3206, event: '你被宗门长老看中，成了外门弟子的灵宠兼道友。', grade: 1, realm: 3, immortalEffect: { CULT: 28, SE: 15 } },
     { id: 3207, event: '你闭关十年，出关时已是物是人非。', grade: 0, realm: 3, effect: { AGE: 10 }, immortalEffect: { CULT: 50 } },
     { id: 3208, event: '你炼出了一炉上品灵丹，香飘十里。', grade: 2, realm: 3, immortalEffect: { CULT: 35, SE: 15 } },
 
-    // ============ 修仙事件 · 元婴（realm 4） ============
-    { id: 3301, event: '你元婴出窍，遨游天地，只觉无比自由。', grade: 2, realm: 4, immortalEffect: { CULT: 45, SE: 20 } },
+    // ============ 修仙事件 · 化形（realm 4） ============
+    { id: 3301, event: '你化形成功，妖婴出窍，遨游天地，只觉无比自由。', grade: 2, realm: 4, immortalEffect: { CULT: 45, SE: 20 } },
     { id: 3302, event: '你在一座仙山闭关百年，再出关时，沧海桑田。', grade: 1, realm: 4, effect: { AGE: 100 }, immortalEffect: { CULT: 80 } },
-    { id: 3303, event: '你与一位元婴老怪论道，获益匪浅。', grade: 1, realm: 4, immortalEffect: { CULT: 50, SE: 20 } },
+    { id: 3303, event: '你与一位化形老怪论道，获益匪浅。', grade: 1, realm: 4, immortalEffect: { CULT: 50, SE: 20 } },
     { id: 3304, event: '你收下了一窝猫崽子当徒弟，猫族香火有望。', grade: 1, realm: 4, immortalEffect: { CULT: 45 } },
     { id: 3305, event: '你在上古秘境中夺得一柄仙剑。', grade: 3, realm: 4, effect: { STR: 2 }, immortalEffect: { CULT: 55, SE: 25 } },
-    { id: 3306, event: '你炼化了元婴中期，修为更上一层楼。', grade: 0, realm: 4, immortalEffect: { CULT: 48, SE: 22 } },
+    { id: 3306, event: '你炼化了化形境中期，修为更上一层楼。', grade: 0, realm: 4, immortalEffect: { CULT: 48, SE: 22 } },
 
-    // ============ 修仙事件 · 化神（realm 5） ============
-    { id: 3401, event: '你化神成功，神识覆盖方圆百里。', grade: 2, realm: 5, immortalEffect: { CULT: 60, SE: 30 } },
+    // ============ 修仙事件 · 通神（realm 5） ============
+    { id: 3401, event: '你通神成功，神识覆盖方圆百里。', grade: 2, realm: 5, immortalEffect: { CULT: 60, SE: 30 } },
     { id: 3402, event: '你闭关五百年，醒来时，昔日的小镇已成废墟。', grade: 1, realm: 5, effect: { AGE: 500 }, immortalEffect: { CULT: 120 } },
-    { id: 3403, event: '你与一条化神期的龙鲤斗法，打了个平手。', grade: 2, realm: 5, effect: { STR: 2 }, immortalEffect: { CULT: 70 } },
+    { id: 3403, event: '你与一条通神期的龙鲤斗法，打了个平手。', grade: 2, realm: 5, effect: { STR: 2 }, immortalEffect: { CULT: 70 } },
     { id: 3404, event: '你寻得一株万年灵药，炼成了突破的契机。', grade: 3, realm: 5, immortalEffect: { CULT: 90, SE: 40 } },
     { id: 3405, event: '你在星空下悟道，隐隐摸到了渡劫的门槛。', grade: 2, realm: 5, immortalEffect: { CULT: 75, SE: 35 } },
 
@@ -126,18 +126,18 @@ export const eventList: Event[] = [
     { id: 3505, event: '你回望凡间，那只曾陪你晒太阳的猫，早已轮回。', grade: 1, realm: 6, immortalEffect: { CULT: 90 } },
 
     // ============ 特殊事件 ============
-    { id: 9000, event: '一股暖流冲遍全身，你的猫生从此改写——仙缘已至，伐骨洗髓，重铸仙根！', grade: 3, washMarrow: true },
-    { id: 9102, event: '你突破桎梏，一举筑成道基！从此，你不再是凡猫，而是筑基期的灵猫。', grade: 2, breakthrough: true },
-    { id: 9202, event: '你冲击筑基失败，真气乱窜，只觉头昏脑涨，修为倒退了小半。', grade: 1, breakthrough: true },
-    { id: 9303, event: '九天玄雷落下，你于雷火之中凝成金丹！金光灿灿，气象万千。', grade: 2, tribulation: true },
-    { id: 9403, event: '你强渡金丹劫，劫雷劈得你皮开肉绽，虽保住了性命，却元气大伤，折寿数十载。', grade: 1, tribulation: true },
-    { id: 9503, event: '金丹劫雷太过霸道，你终究没能扛过去，肉身化作飞灰，只余一缕猫魂飘向轮回。', grade: 2, tribulation: true },
-    { id: 9304, event: '你渡过元婴劫，破丹成婴，一个小小婴孩从你体内脱胎而出。', grade: 2, tribulation: true },
-    { id: 9404, event: '元婴劫九死一生，你虽渡劫失败，却保住了性命，只是寿元大损。', grade: 1, tribulation: true },
-    { id: 9504, event: '元婴劫雷如雨，你陨落在劫中，一代灵猫就此凋零。', grade: 2, tribulation: true },
-    { id: 9305, event: '你化神成功，神识磅礴如海，天地都为你让路。', grade: 3, tribulation: true },
-    { id: 9405, event: '化神劫难如登天，你失败了，但命还在，只是修为跌回了元婴。', grade: 1, tribulation: true },
-    { id: 9505, event: '化神劫中，你心魔丛生，终究陨落。', grade: 2, tribulation: true },
+    { id: 9000, event: '那股在你梦里反复出现的暖流终于冲破桎梏——仙缘已至，伐骨洗髓，重铸仙根！', grade: 3, include: 'SEED>=2', washMarrow: true },
+    { id: 9102, event: '你突破桎梏，一举筑成道基！从此，你不再是凡猫，而是凝脉期的灵猫。', grade: 2, breakthrough: true },
+    { id: 9202, event: '你冲击凝脉失败，真气乱窜，只觉头昏脑涨，修为倒退了小半。', grade: 1, breakthrough: true },
+    { id: 9303, event: '九天玄雷落下，你于雷火之中结成妖丹！金光灿灿，气象万千。', grade: 2, tribulation: true },
+    { id: 9403, event: '你强渡结丹劫，劫雷劈得你皮开肉绽，虽保住了性命，却元气大伤，折寿数十载。', grade: 1, tribulation: true },
+    { id: 9503, event: '结丹劫雷太过霸道，你终究没能扛过去，肉身化作飞灰，只余一缕猫魂飘向轮回。', grade: 2, tribulation: true },
+    { id: 9304, event: '你渡过化形劫，破丹化形，一个长着猫耳的小童从你体内脱胎而出。', grade: 2, tribulation: true },
+    { id: 9404, event: '化形劫九死一生，你虽渡劫失败，却保住了性命，只是寿元大损。', grade: 1, tribulation: true },
+    { id: 9504, event: '化形劫雷如雨，你陨落在劫中，一代灵猫就此凋零。', grade: 2, tribulation: true },
+    { id: 9305, event: '你通神成功，神识磅礴如海，天地都为你让路。', grade: 3, tribulation: true },
+    { id: 9405, event: '通神劫难如登天，你失败了，但命还在，只是修为跌回了化形。', grade: 1, tribulation: true },
+    { id: 9505, event: '通神劫中，你心魔丛生，终究陨落。', grade: 2, tribulation: true },
     { id: 9306, event: '你踏入渡劫境，天雷淬体，肉身金刚不坏。', grade: 3, tribulation: true },
     { id: 9406, event: '渡劫境的最后一关，你没能跨过去，重伤垂死，寿元将尽。', grade: 1, tribulation: true },
     { id: 9506, event: '你在渡劫中陨落，九重天雷过后，世上再无你的身影。', grade: 2, tribulation: true },

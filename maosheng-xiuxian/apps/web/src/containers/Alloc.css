@@ -6,6 +6,15 @@
     gap: 1rem;
     width: 100%;
     .immortal-banner {
+        .banner-decor {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--color-grade-3);
+            opacity: 0.6;
+            margin-bottom: 0.25rem;
+            > svg:first-child { animation: cloud-drift 8s ease-in-out infinite alternate; }
+        }
         text-align: center;
         .transition {
             display: flex;
@@ -143,5 +152,20 @@
         gap: 0.5rem;
         width: 100%;
         li { width: 100%; }
+    }
+    .adoption-hint {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.35rem 0.75rem;
+        border: 0.0625rem dashed var(--base-text-color);
+        box-sizing: border-box;
+        color: var(--base-text-color);
+        opacity: 0.85;
+        strong {
+            color: var(--color-grade-2);
+            font-size: calc(1.1rem * var(--ratio-font));
+        }
     }
 }

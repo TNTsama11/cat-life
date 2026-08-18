@@ -1,0 +1,52 @@
+import type { Event } from '../event.types'
+
+/**
+ * 第五批凡猫事件：
+ * 2501~2506 仙缘预兆（SEED 铺垫，避免伐骨洗髓太突兀）
+ * 2511~2520 家养/流浪身份事件（HOME 条件）
+ * 2531~2550 负面/中性事件（平衡“只有正面事件”的观感）
+ */
+export const eventList: Event[] = [
+    // ============ 仙缘预兆（SEED） ============
+    { id: 2501, event: '你梦见一只通体雪白的猫，它在你耳边说：「你体内有东西在发芽。」', grade: 2, effect: { INT: 1, SEED: 1 } },
+    { id: 2502, event: '你追着一只发光的蝴蝶跑进雾里，再出来时，尾巴尖隐隐发烫。', grade: 1, effect: { INT: 1, SEED: 1 } },
+    { id: 2503, event: '你在月圆之夜蹲在屋顶，月光像水一样流进你的毛里。', grade: 2, effect: { SPR: 1, SEED: 1 } },
+    { id: 2504, event: '一位路过的老道蹲下来盯着你，半晌才说：「有意思，这猫骨头里有东西。」', grade: 2, effect: { INT: 1, SEED: 1 } },
+    { id: 2505, event: '你误食了一株会发光的草，整晚肚子都暖洋洋的，还梦见自己在飞。', grade: 2, effect: { STR: 1, SEED: 1 } },
+    { id: 2506, event: '你在一口古井边喝水，水面倒影里，你的眼睛亮得像两颗星。', grade: 1, effect: { SPR: 1, SEED: 1 } },
+
+    // ============ 家养/流浪身份 ============
+    { id: 2511, event: '你被一双温柔的手捧起来，从此有了名字、猫窝和一个家。', grade: 1, include: 'HOME=1', effect: { MNY: 1, SPR: 2 } },
+    { id: 2512, event: '你出生在街头，第一眼看到的是纸箱和车流，你决定自己养活自己。', grade: 1, include: 'HOME=0', effect: { STR: 1, MNY: -1 } },
+    { id: 2513, event: '主人把新买的猫窝放在窗边，你睡了一下午，阳光暖烘烘的。', grade: 0, include: 'HOME=1', effect: { SPR: 2 } },
+    { id: 2514, event: '你在垃圾桶边翻到半根火腿肠，小心翼翼地舔着吃。', grade: 0, include: 'HOME=0', effect: { STR: 1, SPR: -1 } },
+    { id: 2515, event: '主人带你去宠物店挑零食，你恨不得把整排猫条都叼走。', grade: 1, include: 'HOME=1', effect: { SPR: 2, MNY: -1 } },
+    { id: 2516, event: '你在一家店门口蹲了一整天，老板娘心软，给了你一碗水。', grade: 0, include: 'HOME=0', effect: { SPR: 1, MNY: 1 } },
+    { id: 2517, event: '主人出差三天，你在门口等了他三天，他回来时你喵得嗓子都哑了。', grade: 1, include: 'HOME=1', effect: { SPR: 2 } },
+    { id: 2518, event: '你被雨淋透了，躲进一个桥洞，和另一只流浪猫挤在一起发抖。', grade: 0, include: 'HOME=0', effect: { STR: -1, SPR: -1 } },
+
+    // ============ 负面 / 中性事件 ============
+    { id: 2531, event: '你偷吃了桌上的鱼，结果鱼刺卡了喉咙，被主人送去医院才取出来。', grade: 1, effect: { STR: -1, SPR: -1 } },
+    { id: 2532, event: '你从柜顶跳下来时没站稳，崴了一只前爪，瘸了好几天。', grade: 1, effect: { STR: -2 } },
+    { id: 2533, event: '你被隔壁的大狗追了一整条街，回家后缩在角落里发抖。', grade: 1, effect: { STR: -1, SPR: -1 } },
+    { id: 2534, event: '你误喝了主人的咖啡，苦得你怀疑猫生，一整天都没精神。', grade: 0, effect: { SPR: -1 } },
+    { id: 2535, event: '你最喜欢的毛线球被主人收走了，你对着柜子喵了半小时。', grade: 0, effect: { SPR: -1 } },
+    { id: 2536, event: '你生病了，浑身没力气，连最喜欢的逗猫棒都懒得看。', grade: 1, effect: { STR: -1, LIF: -1 } },
+    { id: 2537, event: '你在外面被一只野猫抢了地盘，脸上挂彩，灰溜溜地走了。', grade: 1, effect: { STR: -1, SPR: -1 } },
+    { id: 2538, event: '主人忙得没空理你，你蹲在门口，觉得自己被全世界遗忘了。', grade: 0, effect: { SPR: -2 } },
+    { id: 2539, event: '你把主人的花瓶打碎了，主人第一次对你发了很大的火。', grade: 0, effect: { SPR: -2 } },
+    { id: 2540, event: '你误食了不该吃的东西，吐了一晚上，主人守了你一夜。', grade: 1, effect: { STR: -1, SPR: -1, LIF: -1 } },
+    { id: 2541, event: '你被关在阳台上，看着屋里暖暖的灯光，却进不去。', grade: 0, include: 'HOME=1', effect: { SPR: -1 } },
+    { id: 2542, event: '你连续三天没找到干净的水，只能在雨后的水洼里解渴。', grade: 1, include: 'HOME=0', effect: { STR: -1, SPR: -1 } },
+    { id: 2543, event: '你抓老鼠时被老鼠咬了一口，伤口隐隐作痛。', grade: 1, include: 'HOME=0', effect: { STR: -2 } },
+    { id: 2544, event: '你发现自己掉了一撮毛，虽然不疼，但看起来有点丑。', grade: 0, effect: { CHR: -1, SPR: -1 } },
+    { id: 2545, event: '你在寒夜里缩成一团，冷得睡不着，数着远处的车灯。', grade: 0, include: 'HOME=0', effect: { SPR: -2, STR: -1 } },
+
+    // ============ 性别相关事件（SEX: 0 公 / 1 母） ============
+    { id: 2471, event: '你到了情窦初开的年纪，对着窗外嚎叫，引来三只母猫在楼下张望。', grade: 0, include: 'SEX=0&ROM=1', effect: { SPR: 1 } },
+    { id: 2472, event: '你到了情窦初开的年纪，夜里叫声婉转，引来三只公猫蹲在墙头，你一个都没看上。', grade: 0, include: 'SEX=1&ROM=1', effect: { SPR: 1 } },
+    { id: 2473, event: '你和隔壁的母猫好上了，几个月后你当上了猫爸爸。可惜小猫们被送人，你蹲在门口叫了一夜。', grade: 1, include: 'SEX=0&ROM=1&STER!=1', effect: { SPR: 1, CHR: 1 } },
+    { id: 2474, event: '你生了一窝小猫，主人忙前忙后，你第一次学会了带娃。', grade: 1, include: 'SEX=1&ROM=1&STER!=1', effect: { SPR: 2, CHR: 1 } },
+    { id: 2475, event: '你被带去绝育，从此六根清净，成了一只佛系公猫。', grade: 0, include: 'SEX=0&STER!=1', effect: { SPR: -1, INT: 1, STER: 1 } },
+    { id: 2476, event: '你被带去绝育，主人说你更粘人了，像个小棉袄。', grade: 0, include: 'SEX=1&STER!=1', effect: { SPR: 1, INT: 1, STER: 1 } },
+]

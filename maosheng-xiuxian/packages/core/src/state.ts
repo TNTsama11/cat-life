@@ -53,6 +53,11 @@ export type Phase = 'mortal' | 'immortal'
 export interface GameState {
     props: HLProperties // 凡猫五维
     life: number // 本局生命值（1 存活，0 死亡）
+    adopted: boolean // 是否被人收养（false 为流浪/野猫）
+    gender: 'male' | 'female' // 性别：公猫 / 母猫
+    romanceEnabled: boolean // 是否开启情感/生育事件
+    sterilized: boolean // 是否已绝育
+    habitat: 'wild' | 'rural' | 'urban' // 生活环境：流浪 / 农村家猫 / 城市家猫
     talents: Set<Talent['id']> // 本局拥有的天赋
     events: Set<Event['id']> // 本局触发过的事件
     achievements: Set<Achievement['id']> // 本局达成的成就
@@ -66,6 +71,12 @@ export interface GameState {
     immortal: HLImmortalFive | null // 仙侠五维（洗髓前为 null）
     pendingImmortalAlloc: boolean // 待洗点（伐骨洗髓后）
     tribulation: number // 已渡劫次数
+    // —— 新增成长维度 ——
+    immortalSeed: number // 仙缘线索（凡猫阶段铺垫）
+    daoInsight: number // 道韵（悟道积累）
+    demonHeart: number // 心魔（修仙负面积累）
+    exposure: number // 妖踪暴露度（0 藏得好 ~ 100 人尽皆知）
+    stance: 'hide' | 'fame' // 藏拙 / 扬名
 }
 
 /** 持久化存储的数据 */
@@ -87,6 +98,11 @@ export function createState(
     return {
         props: createHLProperties(allocation),
         life: 1,
+        adopted: false,
+        gender: 'male',
+        romanceEnabled: true,
+        sterilized: false,
+        habitat: 'wild',
         talents: new Set(talents),
         events: new Set(),
         achievements: new Set(),
@@ -99,6 +115,11 @@ export function createState(
         immortal: null,
         pendingImmortalAlloc: false,
         tribulation: 0,
+        immortalSeed: 0,
+        daoInsight: 0,
+        demonHeart: 0,
+        exposure: 0,
+        stance: 'hide',
     }
 }
 
@@ -157,6 +178,15 @@ export interface FlatState {
     PHY: number // 体魄
     FOR: number // 机缘
     SPC: number // 灵韵
+    HOME: number // 0 流浪 1 家养
+    SEED: number // 仙缘线索
+    DAO: number // 道韵
+    DEMON: number // 心魔
+    EXPO: number // 妖踪暴露度
+    SEX: number // 0 公猫 1 母猫
+    ROM: number // 1 开启情感/生育事件
+    STER: number // 1 已绝育
+    HAB: number // 0 流浪 1 农村家猫 2 城市家猫
 }
 
 type FlatStateKey = keyof FlatState
@@ -213,6 +243,16 @@ const FlatMappers: { [Key in FlatStateKey]: FlatMapper<Key> } = {
     PHY: state => state.game.immortal?.current.physique ?? 0,
     FOR: state => state.game.immortal?.current.fortune ?? 0,
     SPC: state => state.game.immortal?.current.spiritCharm ?? 0,
+    HOME: state => (state.game.adopted ? 1 : 0),
+    SEED: state => state.game.immortalSeed ?? 0,
+    DAO: state => state.game.daoInsight ?? 0,
+    DEMON: state => state.game.demonHeart ?? 0,
+    EXPO: state => state.game.exposure ?? 0,
+    SEX: state => (state.game.gender === 'female' ? 1 : 0),
+    ROM: state => (state.game.romanceEnabled === false ? 0 : 1),
+    STER: state => (state.game.sterilized ? 1 : 0),
+    HAB: state =>
+        state.game.habitat === 'urban' ? 2 : state.game.habitat === 'rural' ? 1 : 0,
 }
 
 export const SupportedFlatStateKeys = new Set(keys(FlatMappers))
