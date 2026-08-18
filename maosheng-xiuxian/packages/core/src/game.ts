@@ -58,6 +58,23 @@ const MATCHMAKING_EVENT = 2138
 /** 普通事件基础权重 */
 const MORTAL_BASE_WEIGHT = 10
 
+/** 事件属性效果合计，用于判断事件是正面还是负面 */
+function mortalEventTone(eventId: Event['id']): 'positive' | 'negative' | 'neutral' {
+    const item = events.get(eventId)
+    const effect = item?.effect
+    if (!effect) return 'neutral'
+    let sum = 0
+    if (effect.CHR) sum += effect.CHR
+    if (effect.INT) sum += effect.INT
+    if (effect.STR) sum += effect.STR
+    if (effect.MNY) sum += effect.MNY
+    if (effect.SPR) sum += effect.SPR
+    if (effect.LIF) sum += effect.LIF
+    if (sum > 0) return 'positive'
+    if (sum < 0) return 'negative'
+    return 'neutral'
+}
+
 /** 只有家养猫才会遇到的事件特征词（野猫会过滤掉这些事件） */
 const HOME_ONLY_PATTERNS = [
     '主人',
@@ -111,14 +128,32 @@ function mortalEventWeight(eventId: Event['id'], state: GameState): number {
         else if (spr <= 4) w += 7
         return Math.max(2, w)
     }
-    if (!ROMANCE_EVENT_IDS.has(eventId)) return MORTAL_BASE_WEIGHT
-    if (state.adopted) {
-        if (state.habitat === 'urban') {
-            return eventId === MATCHMAKING_EVENT ? 8 : 1
+    if (ROMANCE_EVENT_IDS.has(eventId)) {
+        if (state.adopted) {
+            if (state.habitat === 'urban') {
+                return eventId === MATCHMAKING_EVENT ? 8 : 1
+            }
+            return 4 // 农村家猫：会出门，但概率仍低于流浪猫
         }
-        return 4 // 农村家猫：会出门，但概率仍低于流浪猫
+        return 6 // 流浪猫：情感/生育机会最高
     }
-    return 6 // 流浪猫：情感/生育机会最高
+
+    // 出身与生活环境影响正面/负面事件概率
+    const tone = mortalEventTone(eventId)
+    if (tone === 'neutral') return MORTAL_BASE_WEIGHT
+    const money = state.props.current.money
+    const habitat = state.habitat
+    let w = MORTAL_BASE_WEIGHT
+    if (tone === 'positive') {
+        w += (money - 5) * 1.5
+        if (state.adopted) w += habitat === 'urban' ? 3 : 1
+    } else {
+        w -= (money - 5) * 1.5
+        if (!state.adopted) w += 4
+        else if (habitat === 'rural') w += 1
+        else if (habitat === 'urban') w -= 2
+    }
+    return Math.max(2, Math.round(w))
 }
 
 /** 根据加点计算被人类收养的概率：出身（MNY）与颜值（CHR）越高越容易被捡/被买走 */
