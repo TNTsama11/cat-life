@@ -34,16 +34,14 @@ export default function Home() {
                         立即重开
                     </button>
                 </div>
-                {features && (
-                    <div>
-                        <button className="secondary" onClick={goAchv}>
-                            成就
-                        </button>
-                        <button className="secondary" onClick={goThanks}>
-                            感谢
-                        </button>
-                    </div>
-                )}
+                <div>
+                    <button className="secondary" onClick={goAchv}>
+                        成就
+                    </button>
+                    <button className="secondary" onClick={goThanks}>
+                        感谢
+                    </button>
+                </div>
             </div>
             <div className="actions">
                 {features && <Github />}

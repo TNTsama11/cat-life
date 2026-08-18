@@ -76,3 +76,16 @@
     0%, 100% { transform: scale(1); opacity: 0.85; }
     50% { transform: scale(1.06); opacity: 1; }
 }
+
+@media (max-width: 32rem) {
+    .screen.home {
+        justify-content: flex-start;
+        overflow-y: auto;
+        padding: 1.5rem 0 3.5rem;
+        gap: 1.5rem;
+    }
+    .screen.home .logo svg {
+        width: 72px;
+        height: 72px;
+    }
+}
