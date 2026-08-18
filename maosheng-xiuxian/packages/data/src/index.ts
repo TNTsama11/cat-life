@@ -15,16 +15,25 @@ import type { SpecialThanks } from './specialthanks.types'
 import { Realm } from './cultivation.types'
 import { talentList } from './content/talents'
 import { eventList } from './content/events'
+import { eventList as eventListImmortal } from './content/events-immortal'
+import { eventList as eventListMortal } from './content/events-mortal'
 import { ageList } from './content/ages'
 import { achievementList } from './content/achievements'
+import { achievementList as achievementListExtra } from './content/achievements-extra'
 import { characterList } from './content/characters'
 import { specialthanksList } from './content/specialthanks'
+
+const allEvents: Event[] = [
+    ...eventList,
+    ...eventListImmortal,
+    ...eventListMortal,
+]
 
 export const talent = new Map(talentList.map(t => [t.id, t])) as Map<
     Talent['id'],
     Talent
 >
-export const event = new Map(eventList.map(e => [e.id, e])) as Map<
+export const event = new Map(allEvents.map(e => [e.id, e])) as Map<
     Event['id'],
     Event
 >
@@ -32,8 +41,13 @@ export const age = new Map(ageList.map(a => [a.age, a])) as Map<
     Age['age'],
     Age
 >
+const allAchievements: Achievement[] = [
+    ...achievementList,
+    ...achievementListExtra,
+]
+
 export const achievement = new Map(
-    achievementList.map(a => [a.id, a]),
+    allAchievements.map(a => [a.id, a]),
 ) as Map<Achievement['id'], Achievement>
 export const character = new Map(
     characterList.map(c => [c.id, c]),
@@ -44,7 +58,7 @@ export const specialthanks = specialthanksList as SpecialThanks[]
 export const realmEvents = new Map<Realm, [Event['id'], number][]>(
     Array.from({ length: 7 }, (_, i) => {
         const realm = (i + 1) as Realm
-        const pool = eventList
+        const pool = allEvents
             .filter(e => e.realm === realm)
             .map(e => [e.id, 1] as [Event['id'], number])
         return [realm, pool]
