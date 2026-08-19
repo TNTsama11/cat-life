@@ -272,17 +272,27 @@ function ImmortalProperties() {
 
 function ImmortalHUD() {
     const state = useGameState()
+    const setState = useSetGameState()
     if (!state || state.phase !== 'immortal') return null
     const info = REALMS[state.realm]!
     const next = REALMS[state.realm + 1]
     const progress = next
         ? Math.min(100, Math.floor((state.cultivation / next.threshold) * 100))
         : 100
+    const minorNames = ['初期', '中期', '后期', '圆满']
+    const minorIndex = next
+        ? Math.min(3, Math.floor((state.cultivation / next.threshold) * 4))
+        : 3
+    const forceBreakthrough = () => {
+        setState(prev =>
+            prev ? { ...prev, forceBreakthrough: true } : prev,
+        )
+    }
     return (
         <div className="immortal-hud">
             <div className="realm-badge">
                 <RealmGlyph realm={state.realm} size={24} />
-                {info.name}
+                {info.name} · {minorNames[minorIndex]}
                 {info.humanName !== info.name && (
                     <span className="human-name">（人修称{info.humanName}）</span>
                 )}
@@ -307,6 +317,7 @@ function ImmortalHUD() {
             {state.bottleneck && (
                 <div className="bottleneck">
                     <span>瓶颈期：猫会随缘选择突破、打磨或寻缘</span>
+                    <button onClick={forceBreakthrough}>主动渡劫</button>
                 </div>
             )}
             <div className="meta">

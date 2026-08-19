@@ -95,6 +95,7 @@ export function doBreakthrough(
     const base = produce(state, draft => {
         draft.bottleneck = false
         draft.breakthroughAction = 'none'
+        draft.forceBreakthrough = false
     })
 
     // ============ 普通突破（凝脉；飞升虽标记为非渡劫，但按渡劫处理） ============

@@ -270,13 +270,17 @@ export function next(
 
     if (s.phase === 'immortal') {
         if (s.bottleneck) {
-            // 瓶颈期：随机选择 突破 / 打磨 / 寻缘
-            const choice = random(2, 0, rng)
-            if (choice === 0) {
+            // 玩家主动选择强行突破/渡劫，优先执行
+            if (s.forceBreakthrough) {
                 const br = doBreakthrough(s, rng)
                 s = br.state
                 er = triggerEvents(br.eventIds, s, profile)
-            } else if (choice === 1) {
+            } else if (random(2, 0, rng) === 0) {
+                // 瓶颈期：随机选择 突破 / 打磨 / 寻缘
+                const br = doBreakthrough(s, rng)
+                s = br.state
+                er = triggerEvents(br.eventIds, s, profile)
+            } else if (random(1, 0, rng) === 0) {
                 s = produce(s, draft => {
                     draft.tribulationPrep = Math.min(100, draft.tribulationPrep + 8)
                 })
@@ -408,6 +412,7 @@ export function applyImmortal(
         draft.sterilized = false
         draft.bottleneck = false
         draft.breakthroughAction = 'none'
+        draft.forceBreakthrough = false
         draft.tribulationPrep = 0
         draft.karma = 0
         draft.tribulationDeaths = 0

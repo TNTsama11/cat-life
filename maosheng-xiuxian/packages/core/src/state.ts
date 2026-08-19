@@ -79,7 +79,8 @@ export interface GameState {
     stance: 'hide' | 'fame' // 藏拙 / 扬名
     // —— 瓶颈与渡劫准备 ——
     bottleneck: boolean // 修为已满，等待突破
-    breakthroughAction: 'none' | 'breakthrough' | 'cultivate' | 'seek' // 瓶颈期选择
+    breakthroughAction: 'none' | 'breakthrough' | 'cultivate' | 'seek' // 瓶颈期选择（保留字段，随机模式下不使用）
+    forceBreakthrough: boolean // 玩家主动选择强行突破/渡劫
     tribulationPrep: number // 渡劫准备度（0~100）
     karma: number // 业力/善缘（-100 恶 ~ +100 善）
     tribulationDeaths: number // 已被九命/保命天赋挡下的死亡次数
@@ -128,6 +129,7 @@ export function createState(
         stance: 'hide',
         bottleneck: false,
         breakthroughAction: 'none',
+        forceBreakthrough: false,
         tribulationPrep: 0,
         karma: 0,
         tribulationDeaths: 0,
