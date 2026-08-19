@@ -25,6 +25,13 @@ pnpm build:web
 pnpm test:core
 ```
 
+## Current Mechanics
+
+- Mortal life: gender, adoption, habitat, lifespan, romance toggle, danger events, low-origin bonuses.
+- Cultivation: cat-specific realms, 70% cultivation events / 30% special events, random bottleneck choices, tribulation preparation, karma, multi-stage tribulations, nine-lives protection, event-driven exposure.
+
+
+
 ## Editing Content
 
 Everyone is welcome to contribute events, talents and achievements. You only need to edit the files under `packages/data/src/content/`.
