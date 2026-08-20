@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { useLayoutEffect, useEffect } from 'react'
-import { useNext, useGotoSummary, useGameState, useSetGameState, useSetStep, Step, type Log } from '@remake/hooks'
+import { useNext, useGotoSummary, useGameState, useSetGameState, useSetStep, Step, type Log, estimateBreakthrough, estimateTribulationStages } from '@remake/hooks'
 import { useJudge } from '@/hooks/judge'
 import { achievements, events, talents, REALMS } from '@remake/data'
 import { properties, immortalProperties } from '@/display'
@@ -288,6 +288,12 @@ function ImmortalHUD() {
             prev ? { ...prev, forceBreakthrough: true } : prev,
         )
     }
+    const tribulationStages = state.bottleneck
+        ? estimateTribulationStages(state)
+        : []
+    const normalBreakthroughChance = state.bottleneck
+        ? Math.round(estimateBreakthrough(state) * 100)
+        : 0
     return (
         <div className="immortal-hud">
             <div className="realm-badge">
@@ -317,6 +323,17 @@ function ImmortalHUD() {
             {state.bottleneck && (
                 <div className="bottleneck">
                     <span>瓶颈期：猫会随缘选择突破、打磨或寻缘</span>
+                    {tribulationStages.length > 0 ? (
+                        <span className="chances">
+                            {tribulationStages
+                                .map(stage => `${stage.name} ${Math.round(stage.chance * 100)}%`)
+                                .join(' · ')}
+                        </span>
+                    ) : (
+                        <span className="chances">
+                            突破成功率 {normalBreakthroughChance}%
+                        </span>
+                    )}
                     <button onClick={forceBreakthrough}>主动渡劫</button>
                 </div>
             )}

@@ -219,6 +219,65 @@ export function doBreakthrough(
     return { state: s, eventId: final, eventIds: [...processEvents, final] }
 }
 
+export interface TribulationStageEstimate {
+    name: string
+    chance: number
+}
+
+/** 估算普通突破成功率（用于 UI 准备面板） */
+export function estimateBreakthrough(state: GameState): number {
+    if (state.phase !== 'immortal' || !state.immortal) return 0
+    const im = state.immortal.current
+    const dao = state.daoInsight ?? 0
+    const demon = state.demonHeart ?? 0
+    const prep = state.tribulationPrep ?? 0
+    return clampChance(
+        0.25 +
+            im.aptitude * 0.03 +
+            im.comprehension * 0.025 +
+            im.physique * 0.01 +
+            dao * 0.005 -
+            demon * 0.02 +
+            prep * 0.003,
+    )
+}
+
+/** 估算渡劫各阶段成功率（用于 UI 准备面板） */
+export function estimateTribulationStages(
+    state: GameState,
+): TribulationStageEstimate[] {
+    if (state.phase !== 'immortal' || !state.immortal) return []
+    const target = (state.realm + 1) as RealmType
+    const im = state.immortal.current
+    const dao = state.daoInsight ?? 0
+    const demon = state.demonHeart ?? 0
+    const prep = state.tribulationPrep ?? 0
+    const karma = state.karma ?? 0
+
+    const stages: TribulationStageEstimate[] = []
+    stages.push({
+        name: '雷劫',
+        chance: clampChance(0.35 + im.physique * 0.03 + prep * 0.004),
+    })
+    stages.push({
+        name: '心魔劫',
+        chance: clampChance(0.35 + dao * 0.012 - demon * 0.02 + karma * 0.001),
+    })
+    if (target >= Realm.SpiritSevering) {
+        stages.push({
+            name: '风火劫',
+            chance: clampChance(0.4 + im.physique * 0.025 + im.fortune * 0.015 + prep * 0.003),
+        })
+    }
+    if (target === Realm.Ascension) {
+        stages.push({
+            name: '因果劫',
+            chance: clampChance(0.5 + karma * 0.004 + dao * 0.005),
+        })
+    }
+    return stages
+}
+
 /** 是否拥有灵根类天赋 */
 export function hasSpiritRootTalent(state: GameState): boolean {
     for (const id of state.talents) {

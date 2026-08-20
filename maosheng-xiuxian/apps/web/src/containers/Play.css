@@ -335,6 +335,11 @@ ul.log-inner {
             font-weight: bold;
             opacity: 0.85;
         }
+        .chances {
+            font-size: calc(0.8rem * var(--ratio-font));
+            opacity: 0.75;
+            font-weight: normal;
+        }
         button {
             height: 1.6rem;
             padding: 0 0.5rem;
